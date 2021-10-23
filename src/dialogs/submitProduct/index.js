@@ -1,6 +1,8 @@
 import "./style.css";
+import React, { useContext } from "react";
 import { Button } from "@material-ui/core";
 
+import ConstantsContext from "../../context/Constants";
 import validationsSchemas from "../../utils/validationsSchemas";
 import initialsValues from "../../utils/initialsValues";
 import {
@@ -10,18 +12,9 @@ import {
   FormSubmitButton,
 } from "../../components/forms";
 
-const types = ["יומי", "שבועי", "דו-שבועי", "מיוחד"];
-const sizes = [
-  'ק"ג',
-  "יחידה",
-  "קרטון",
-  "שליש",
-  "דאבל שליש",
-  "קילו כדורים",
-  "אמבטיה",
-];
-
 const SubmitProduct = ({ dismiss, handleSubmit }) => {
+  const { constants } = useContext(ConstantsContext);
+
   return (
     <Form
       initialValues={initialsValues.product}
@@ -56,7 +49,11 @@ const SubmitProduct = ({ dismiss, handleSubmit }) => {
               <FormTextField label="Name" name="sName" />
             </div>
             {/** type */}
-            <FormSelectField label="Type" name="type" options={types} />
+            <FormSelectField
+              label="Type"
+              name="type"
+              options={constants.HEB.SUPPLIER.TYPES}
+            />
           </div>
         </div>
         {/** sizes */}
@@ -70,21 +67,21 @@ const SubmitProduct = ({ dismiss, handleSubmit }) => {
               <FormSelectField
                 label="Stock daily"
                 name="stockDaily"
-                options={sizes}
+                options={constants.HEB.SIZES.TYPES}
               />
               {/** stockMonthly */}
               <div className="middle-input">
                 <FormSelectField
                   label="Stock monthly"
                   name="stockMonthly"
-                  options={sizes}
+                  options={constants.HEB.SIZES.TYPES}
                 />
               </div>
               {/** inOrder */}
               <FormSelectField
                 label="In order"
                 name="inOrder"
-                options={sizes}
+                options={constants.HEB.SIZES.TYPES}
               />
             </div>
           </div>
