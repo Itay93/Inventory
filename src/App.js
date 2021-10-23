@@ -7,7 +7,7 @@ import Navbar from "./router/navbar";
 import Dashboard from "./pages/dashboard";
 import Products from "./pages/products";
 import Suppliers from "./pages/suppliers";
-import DailyInventory from "./pages/dailyInventory";
+import Inventory from "./pages/inventory";
 
 const App = () => {
   const [constants, setConstants] = useState({});
@@ -38,8 +38,8 @@ const App = () => {
               <Route path="/suppliers">
                 <Suppliers />
               </Route>
-              <Route path="/dailyInventory">
-                <DailyInventory />
+              <Route path="/inventory">
+                <Inventory />
               </Route>
             </ConstantsContext.Provider>
           </Switch>

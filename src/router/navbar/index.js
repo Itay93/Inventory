@@ -6,12 +6,12 @@ import routes from "../routes";
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <h1>Inventory</h1>
+      <h1>No Name Company</h1>
       <div className="links">
         <Link to="/">{routes.DASHBOARD}</Link>
         <Link to="/products">{routes.PRODUCTS}</Link>
         <Link to="/suppliers">{routes.SUPPLIERS}</Link>
-        <Link to="/dailyInventory">{routes.DAILY_INVENTORY}</Link>
+        <Link to="/inventory">{routes.INVENTORY}</Link>
       </div>
     </nav>
   );
