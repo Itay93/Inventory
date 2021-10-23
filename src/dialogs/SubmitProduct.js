@@ -1,30 +1,35 @@
 import React from "react";
 import * as yup from "yup";
-import { Button } from "@material-ui/core";
+import { Button, TextField, MenuItem } from "@material-ui/core";
 
-import Form from "../components/form/Form";
-import FormTextField from "../components/form/FormTextField";
-import FormSubmitButton from "../components/form/FormSubmitButton";
+import { Form, FormTextField, FormSubmitButton } from "../components/forms";
 
 const validationSchema = yup.object().shape({
   pName: yup.string().required("Required"),
-  price: yup.number().required("Required"),
-  valueInSales: yup.number().required("Required"),
+  price: yup.number().min(0, "Min of 0").required("Required"),
+  valueInSales: yup.number().min(0, "Min of 0").required("Required"),
   sName: yup.string().required("Required"),
   type: yup.string().required("Required"),
   stockDaily: yup.string().required("Required"),
   stockMonthly: yup.string().required("Required"),
   inOrder: yup.string().required("Required"),
-  kg: yup.number().required("Required"),
-  box: yup.number(),
-  unit: yup.number(),
-  third: yup.number(),
-  dThird: yup.number(),
-  doughBox: yup.number(),
-  ambat: yup.number(),
+  kg: yup.number().min(0, "Min of 0").required("Required"),
+  box: yup.number().min(0, "Min of 0"),
+  unit: yup.number().min(0, "Min of 0"),
+  third: yup.number().min(0, "Min of 0"),
+  dThird: yup.number().min(0, "Min of 0"),
+  doughBox: yup.number().min(0, "Min of 0"),
+  ambat: yup.number().min(0, "Min of 0"),
 });
 
+const currencies = ["יומי", "שבועי", "דו-שבועי", "מיוחד"];
+
 const SubmitProduct = ({ dismiss, handleSubmit }) => {
+  const [currency, setCurrency] = React.useState("");
+
+  const handleChange = (event) => {
+    setCurrency(event.target.value);
+  };
   return (
     <Form
       initialValues={{
@@ -75,7 +80,22 @@ const SubmitProduct = ({ dismiss, handleSubmit }) => {
               <FormTextField label="Name" name="sName" />
             </div>
             {/** type */}
-            <FormTextField label="Type" name="type" />
+            {/**<FormTextField label="Type" name="type" />*/}
+            <TextField
+              style={{ width: 150 }}
+              id="type"
+              select
+              label="Type"
+              value={currency}
+              onChange={handleChange}
+              variant="filled"
+            >
+              {currencies.map((option) => (
+                <MenuItem key={option} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </TextField>
           </div>
         </div>
         {/** sizes */}
