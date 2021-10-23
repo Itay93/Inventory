@@ -26,13 +26,9 @@
   justify-content: center;
 }
 
-.product {
-}
-
 .product-inputs {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
 }
 
 .supplier {
