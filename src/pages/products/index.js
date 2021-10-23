@@ -7,6 +7,10 @@ import SubmitProduct from "../../dialogs/SubmitProduct";
 const Products = () => {
   const [showSubmitDialog, setShowSubmitDialog] = useState(false);
 
+  const handleSubmitProduct = (values) => {
+    console.log(values);
+  };
+
   return (
     <div className="content">
       <h1>Products</h1>
@@ -16,7 +20,10 @@ const Products = () => {
         </Button>
         <Dialog open={showSubmitDialog}>
           <DialogContent>
-            <SubmitProduct dismiss={() => setShowSubmitDialog(false)} />
+            <SubmitProduct
+              dismiss={() => setShowSubmitDialog(false)}
+              handleSubmit={(values) => handleSubmitProduct(values)}
+            />
           </DialogContent>
         </Dialog>
       </div>
