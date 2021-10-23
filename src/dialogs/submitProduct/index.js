@@ -100,13 +100,25 @@ const SubmitProduct = ({ dismiss, handleSubmit }) => {
             <h4>Inventory</h4>
             <div className="sizes-inventory-inputs">
               {/** stockDaily */}
-              <FormTextField label="Stock daily" name="stockDaily" />
+              <FormSelectField
+                label="Stock daily"
+                name="stockDaily"
+                options={sizes}
+              />
               {/** stockMonthly */}
               <div className="middle-input">
-                <FormTextField label="Stock monthly" name="stockMonthly" />
+                <FormSelectField
+                  label="Stock monthly"
+                  name="stockMonthly"
+                  options={sizes}
+                />
               </div>
               {/** inOrder */}
-              <FormTextField label="In order" name="inOrder" />
+              <FormSelectField
+                label="In order"
+                name="inOrder"
+                options={sizes}
+              />
             </div>
           </div>
           {/** values */}
