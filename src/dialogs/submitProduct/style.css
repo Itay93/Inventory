@@ -17,7 +17,7 @@
   justify-content: center;
 }
 
-.product-inputs {
+.product .product-inputs {
   display: flex;
   flex-direction: row;
 }
