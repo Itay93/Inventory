@@ -8,6 +8,7 @@ const Products = () => {
   const [showSubmitDialog, setShowSubmitDialog] = useState(false);
 
   const handleSubmitProduct = (values) => {
+    setShowSubmitDialog(false);
     console.log(values);
   };
 
