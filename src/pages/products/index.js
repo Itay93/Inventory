@@ -2,7 +2,7 @@ import "./style.css";
 import React, { useState } from "react";
 import { Dialog, DialogContent, Button } from "@material-ui/core";
 
-import SubmitProduct from "../../dialogs/SubmitProduct";
+import SubmitProduct from "../../dialogs/submitProduct";
 
 const Products = () => {
   const [showSubmitDialog, setShowSubmitDialog] = useState(false);

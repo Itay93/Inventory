@@ -1,8 +1,13 @@
-import React from "react";
+import "./style.css";
 import * as yup from "yup";
-import { Button, TextField, MenuItem } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
-import { Form, FormTextField, FormSubmitButton } from "../components/forms";
+import {
+  Form,
+  FormTextField,
+  FormSelectField,
+  FormSubmitButton,
+} from "../../components/forms";
 
 const validationSchema = yup.object().shape({
   pName: yup.string().required("Required"),
@@ -22,14 +27,18 @@ const validationSchema = yup.object().shape({
   ambat: yup.number().min(0, "Min of 0"),
 });
 
-const currencies = ["יומי", "שבועי", "דו-שבועי", "מיוחד"];
+const types = ["יומי", "שבועי", "דו-שבועי", "מיוחד"];
+const sizes = [
+  'ק"ג',
+  "יחידה",
+  "קרטון",
+  "שליש",
+  "דאבל שליש",
+  "קילו כדורים",
+  "אמבטיה",
+];
 
 const SubmitProduct = ({ dismiss, handleSubmit }) => {
-  const [currency, setCurrency] = React.useState("");
-
-  const handleChange = (event) => {
-    setCurrency(event.target.value);
-  };
   return (
     <Form
       initialValues={{
@@ -80,22 +89,7 @@ const SubmitProduct = ({ dismiss, handleSubmit }) => {
               <FormTextField label="Name" name="sName" />
             </div>
             {/** type */}
-            {/**<FormTextField label="Type" name="type" />*/}
-            <TextField
-              style={{ width: 150 }}
-              id="type"
-              select
-              label="Type"
-              value={currency}
-              onChange={handleChange}
-              variant="filled"
-            >
-              {currencies.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </TextField>
+            <FormSelectField label="Type" name="type" options={types} />
           </div>
         </div>
         {/** sizes */}
@@ -156,6 +150,7 @@ const SubmitProduct = ({ dismiss, handleSubmit }) => {
             </div>
           </div>
         </div>
+        {/** buttons */}
         <div className="form-buttons">
           <div className="button">
             <FormSubmitButton />

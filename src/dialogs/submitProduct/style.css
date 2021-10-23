@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+* {
+  font-family: "Quicksand";
+  color: #333;
+}
+
+.button {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.form-buttons {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.product-inputs {
+  display: flex;
+  flex-direction: row;
+}
+
+.supplier {
+  margin-top: 10px;
+}
+
+.supplier-inputs {
+  display: flex;
+  flex-direction: row;
+}
+
+.sizes {
+  margin-top: 10px;
+}
+
+.sizes-inventory {
+  margin-top: 10px;
+}
+
+.sizes-values {
+  margin-top: 10px;
+}
+
+.sizes-inventory-inputs {
+  display: flex;
+  flex-direction: row;
+}
+
+.sizes-values-inputs {
+  display: flex;
+  flex-direction: row;
+}
+
+.left-input {
+  margin-right: 5px;
+}
+
+.middle-input {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.right-input {
+  margin-left: 5px;
+}
