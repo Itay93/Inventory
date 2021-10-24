@@ -18,6 +18,17 @@ const product = yup.object().shape({
   ambat: yup.number().min(0, "Min of 0").required("Required"),
 });
 
+const supplier = yup.object().shape({
+  name: yup.string().required("Required"),
+  type: yup.string().required("Required"),
+  deliveryDays: yup.array().required("Required"),
+  orderDays: yup.array().required("Required"),
+  salesAgent: yup.string().required("Required"),
+  number: yup.number().required("Required"),
+  orderBy: yup.string().required("Required"),
+});
+
 export default {
   product,
+  supplier,
 };

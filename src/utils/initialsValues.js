@@ -16,6 +16,17 @@ const product = {
   ambat: "",
 };
 
+const supplier = {
+  name: "",
+  type: "",
+  deliveryDays: [],
+  orderDays: [],
+  salesAgent: "",
+  number: "",
+  orderBy: "",
+};
+
 export default {
   product,
+  supplier,
 };
