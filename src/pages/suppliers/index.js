@@ -1,12 +1,15 @@
 import "./style.css";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Dialog, DialogContent, Button } from "@material-ui/core";
 
+import SuppliersContext from "../../context/Suppliers";
 import suppliersService from "../../services/suppliers";
 import LoadingOverlay from "../LoadingOverlay";
 import SubmitSupplier from "../../dialogs/submitSupplier";
 
 const Suppliers = () => {
+  const { suppliers, setSuppliers } = useContext(SuppliersContext);
+
   const [loading, setLoading] = useState(false);
   const [showSubmitDialog, setShowSubmitDialog] = useState(false);
 
@@ -18,6 +21,7 @@ const Suppliers = () => {
     // error
     if (response.isError) return alert(response.error);
     // success
+    setSuppliers([...suppliers, response]);
     alert("Supplier successfully saved!");
   };
 

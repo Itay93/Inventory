@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import ConstantsContext from "./context/Constants";
-import ProductsContext from "./context/Products";
 import constantsService from "./services/constants";
+import ProductsContext from "./context/Products";
 import productsService from "./services/products";
+import SuppliersContext from "./context/Suppliers";
+import suppliersService from "./services/suppliers";
 import Navbar from "./router/navbar";
 import Dashboard from "./pages/dashboard";
 import Products from "./pages/products";
@@ -14,10 +16,12 @@ import Inventory from "./pages/inventory";
 const App = () => {
   const [constants, setConstants] = useState({});
   const [products, setProducts] = useState([]);
+  const [suppliers, setSuppliers] = useState([]);
 
   useEffect(() => {
     loadConstants();
     loadProducts();
+    loadSuppliers();
   }, []);
 
   const loadConstants = async () => {
@@ -32,6 +36,12 @@ const App = () => {
     setProducts(response);
   };
 
+  const loadSuppliers = async () => {
+    const response = await suppliersService.handleGetSuppliers();
+    if (response.isError) return alert(response.error);
+    setSuppliers(response);
+  };
+
   return (
     <BrowserRouter>
       <div className="app">
@@ -40,18 +50,20 @@ const App = () => {
           <Switch>
             <ConstantsContext.Provider value={{ constants }}>
               <ProductsContext.Provider value={{ products, setProducts }}>
-                <Route exact path="/">
-                  <Dashboard />
-                </Route>
-                <Route path="/products">
-                  <Products />
-                </Route>
-                <Route path="/suppliers">
-                  <Suppliers />
-                </Route>
-                <Route path="/inventory">
-                  <Inventory />
-                </Route>
+                <SuppliersContext.Provider value={{ suppliers, setSuppliers }}>
+                  <Route exact path="/">
+                    <Dashboard />
+                  </Route>
+                  <Route path="/products">
+                    <Products />
+                  </Route>
+                  <Route path="/suppliers">
+                    <Suppliers />
+                  </Route>
+                  <Route path="/inventory">
+                    <Inventory />
+                  </Route>
+                </SuppliersContext.Provider>
               </ProductsContext.Provider>
             </ConstantsContext.Provider>
           </Switch>
