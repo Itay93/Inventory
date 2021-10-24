@@ -4,24 +4,26 @@ import { Dialog, DialogContent, Button } from "@material-ui/core";
 
 import productsService from "../../services/products";
 import SubmitProduct from "../../dialogs/submitProduct";
+import LoadingOverlay from "../LoadingOverlay";
 
 const Products = () => {
   const [loading, setLoading] = useState(false);
   const [showSubmitDialog, setShowSubmitDialog] = useState(false);
 
   const handleSubmitProduct = async (values) => {
+    setShowSubmitDialog(false);
     setLoading(true);
     const response = await productsService.handlePostProduct(values);
     setLoading(false);
     // error
     if (response.isError) return alert(response.error);
     // success
-    setShowSubmitDialog(false);
     alert("Product successfully saved!");
   };
 
   return (
     <div className="content">
+      {loading && <LoadingOverlay />}
       <h1>Products</h1>
       <div className="buttons">
         <Button variant="contained" onClick={() => setShowSubmitDialog(true)}>
