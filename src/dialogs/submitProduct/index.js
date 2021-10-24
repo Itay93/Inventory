@@ -118,7 +118,7 @@ const SubmitProduct = ({ dismiss, handleSubmit }) => {
           <div className="sizes-values">
             <div className="sizes-values-inputs">
               {/** doughBox */}
-              <FormTextField label="Dough box" name="doughBox" type="number" />
+              <FormTextField label="Box dough" name="boxDough" type="number" />
               {/** ambat */}
               <div className="right-input">
                 <FormTextField label="Ambat" name="ambat" type="number" />

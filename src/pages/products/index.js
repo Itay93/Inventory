@@ -2,14 +2,17 @@ import "./style.css";
 import React, { useState } from "react";
 import { Dialog, DialogContent, Button } from "@material-ui/core";
 
+import productsService from "../../services/products";
 import SubmitProduct from "../../dialogs/submitProduct";
 
 const Products = () => {
   const [showSubmitDialog, setShowSubmitDialog] = useState(false);
 
-  const handleSubmitProduct = (values) => {
+  const handleSubmitProduct = async (values) => {
+    const response = await productsService.handlePostProduct(values);
+    if (response.isError) return alert(response.error);
     setShowSubmitDialog(false);
-    console.log(values);
+    alert("Success!");
   };
 
   return (
