@@ -1,12 +1,15 @@
 import "./style.css";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Dialog, DialogContent, Button } from "@material-ui/core";
 
+import ProductsContext from "../../context/Products";
 import productsService from "../../services/products";
 import SubmitProduct from "../../dialogs/submitProduct";
 import LoadingOverlay from "../LoadingOverlay";
 
 const Products = () => {
+  const { products, setProducts } = useContext(ProductsContext);
+
   const [loading, setLoading] = useState(false);
   const [showSubmitDialog, setShowSubmitDialog] = useState(false);
 
@@ -18,6 +21,7 @@ const Products = () => {
     // error
     if (response.isError) return alert(response.error);
     // success
+    setProducts([...products, response]);
     alert("Product successfully saved!");
   };
 
