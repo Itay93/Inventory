@@ -10,12 +10,12 @@ const product = yup.object().shape({
   stockMonthly: yup.string().required("Required"),
   inOrder: yup.string().required("Required"),
   kg: yup.number().min(0, "Min of 0").required("Required"),
-  box: yup.number().min(0, "Min of 0"),
-  unit: yup.number().min(0, "Min of 0"),
-  third: yup.number().min(0, "Min of 0"),
-  dThird: yup.number().min(0, "Min of 0"),
-  doughBox: yup.number().min(0, "Min of 0"),
-  ambat: yup.number().min(0, "Min of 0"),
+  box: yup.number().min(0, "Min of 0").required("Required"),
+  unit: yup.number().min(0, "Min of 0").required("Required"),
+  third: yup.number().min(0, "Min of 0").required("Required"),
+  dThird: yup.number().min(0, "Min of 0").required("Required"),
+  boxDough: yup.number().min(0, "Min of 0").required("Required"),
+  ambat: yup.number().min(0, "Min of 0").required("Required"),
 });
 
 export default {

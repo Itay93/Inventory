@@ -6,13 +6,18 @@ import productsService from "../../services/products";
 import SubmitProduct from "../../dialogs/submitProduct";
 
 const Products = () => {
+  const [loading, setLoading] = useState(false);
   const [showSubmitDialog, setShowSubmitDialog] = useState(false);
 
   const handleSubmitProduct = async (values) => {
+    setLoading(true);
     const response = await productsService.handlePostProduct(values);
+    setLoading(false);
+    // error
     if (response.isError) return alert(response.error);
+    // success
     setShowSubmitDialog(false);
-    alert("Success!");
+    alert("Product successfully saved!");
   };
 
   return (

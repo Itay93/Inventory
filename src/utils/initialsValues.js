@@ -12,7 +12,7 @@ const product = {
   unit: "",
   third: "",
   dThird: "",
-  doughBox: "",
+  boxDough: "",
   ambat: "",
 };
 

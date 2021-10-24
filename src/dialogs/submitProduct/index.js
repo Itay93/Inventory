@@ -23,107 +23,89 @@ const SubmitProduct = ({ dismiss, handleSubmit }) => {
     >
       <form>
         {/** product */}
-        <div className="product">
-          <h3>Product</h3>
-          <div className="product-inputs">
-            {/** pName */}
-            <FormTextField label="Name" name="pName" />
-            {/** price */}
-            <div className="middle-input">
-              <FormTextField label="Price" name="price" type="number" />
-            </div>
-            {/** valueInSales */}
-            <FormTextField
-              label="Value in sales"
-              name="valueInSales"
-              type="number"
-            />
+        <h3>Product</h3>
+        <div className="inputs-container">
+          {/** name */}
+          <FormTextField label="Name" name="pName" />
+          {/** price */}
+          <div className="middle-input">
+            <FormTextField label="Price" name="price" type="number" />
           </div>
+          {/** value in sales */}
+          <FormTextField
+            label="Value in sales"
+            name="valueInSales"
+            type="number"
+          />
         </div>
         {/** supplier */}
-        <div className="supplier">
-          <h3>Supplier</h3>
-          <div className="supplier-inputs">
-            {/** sName */}
-            <div className="left-input">
-              <FormTextField label="Name" name="sName" />
-            </div>
-            {/** type */}
-            <FormSelectField
-              label="Type"
-              name="type"
-              options={constants.HEB.SUPPLIER.TYPES}
-            />
+        <h3 className="input-title">Supplier</h3>
+        <div className="inputs-container">
+          {/** name */}
+          <div className="left-input">
+            <FormTextField label="Name" name="sName" />
           </div>
+          {/** type */}
+          <FormSelectField
+            label="Type"
+            name="type"
+            options={constants.HEB.SUPPLIER.TYPES}
+          />
         </div>
         {/** sizes */}
-        <div className="sizes">
-          <h3>Sizes</h3>
-          {/** inventory */}
-          <div className="sizes-inventory">
-            <h4>Inventory</h4>
-            <div className="sizes-inventory-inputs">
-              {/** stockDaily */}
-              <FormSelectField
-                label="Stock daily"
-                name="stockDaily"
-                options={constants.HEB.SIZES.TYPES}
-              />
-              {/** stockMonthly */}
-              <div className="middle-input">
-                <FormSelectField
-                  label="Stock monthly"
-                  name="stockMonthly"
-                  options={constants.HEB.SIZES.TYPES}
-                />
-              </div>
-              {/** inOrder */}
-              <FormSelectField
-                label="In order"
-                name="inOrder"
-                options={constants.HEB.SIZES.TYPES}
-              />
-            </div>
+        <h3 className="input-title">Sizes</h3>
+        {/** inventory */}
+        <h4 className="input-title">Inventory</h4>
+        <div className="inputs-container">
+          {/** stock daily */}
+          <FormSelectField
+            label="Stock daily"
+            name="stockDaily"
+            options={constants.HEB.SIZES.TYPES}
+          />
+          {/** stock monthly */}
+          <div className="middle-input">
+            <FormSelectField
+              label="Stock monthly"
+              name="stockMonthly"
+              options={constants.HEB.SIZES.TYPES}
+            />
           </div>
-          {/** values */}
-          <div className="sizes-values">
-            <h4>Values</h4>
-            <div className="sizes-values-inputs">
-              {/** kg */}
-              <FormTextField label="Kg" name="kg" type="number" />
-              {/** box */}
-              <div className="middle-input">
-                <FormTextField label="Box" name="box" type="number" />
-              </div>
-              {/** unit */}
-              <FormTextField label="Unit" name="unit" type="number" />
-            </div>
+          {/** in order */}
+          <FormSelectField
+            label="In order"
+            name="inOrder"
+            options={constants.HEB.SIZES.TYPES}
+          />
+        </div>
+        {/** values */}
+        <h4 className="input-title">Values</h4>
+        <div className="inputs-container">
+          {/** kg */}
+          <FormTextField label="Kg" name="kg" type="number" />
+          {/** box */}
+          <div className="middle-input">
+            <FormTextField label="Box" name="box" type="number" />
           </div>
-          {/** more values */}
-          <div className="sizes-values">
-            <div className="sizes-values-inputs">
-              {/** third */}
-              <FormTextField label="Third" name="third" type="number" />
-              {/** dThird */}
-              <div className="right-input">
-                <FormTextField
-                  label="Double third"
-                  name="dThird"
-                  type="number"
-                />
-              </div>
-            </div>
+          {/** unit */}
+          <FormTextField label="Unit" name="unit" type="number" />
+        </div>
+        {/** more values */}
+        <div className="inputs-container">
+          {/** third */}
+          <FormTextField label="Third" name="third" type="number" />
+          {/** dThird */}
+          <div className="right-input">
+            <FormTextField label="Double third" name="dThird" type="number" />
           </div>
-          {/** more values */}
-          <div className="sizes-values">
-            <div className="sizes-values-inputs">
-              {/** doughBox */}
-              <FormTextField label="Box dough" name="boxDough" type="number" />
-              {/** ambat */}
-              <div className="right-input">
-                <FormTextField label="Ambat" name="ambat" type="number" />
-              </div>
-            </div>
+        </div>
+        {/** more values */}
+        <div className="inputs-container">
+          {/** doughBox */}
+          <FormTextField label="Box dough" name="boxDough" type="number" />
+          {/** ambat */}
+          <div className="right-input">
+            <FormTextField label="Ambat" name="ambat" type="number" />
           </div>
         </div>
         {/** buttons */}
