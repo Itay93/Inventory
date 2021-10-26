@@ -8,42 +8,51 @@ import productsService from "./services/productsService";
 import SuppliersContext from "./context/SuppliersContext";
 import suppliersService from "./services/suppliersService";
 import Navbar from "./router/Navbar";
-import Dashboard from "./pages/DashboardPage";
-import Products from "./pages/ProductsPage";
-import Suppliers from "./pages/SuppliersPage";
-import Inventory from "./pages/InventoryPage";
+import DashboardPage from "./pages/DashboardPage";
+import ProductsPage from "./pages/ProductsPage";
+import SuppliersPage from "./pages/SuppliersPage";
+import InventoryPage from "./pages/InventoryPage";
+import AlertDialog from "./dialogs/AlertDialog";
 
 const App = () => {
   const [constants, setConstants] = useState({});
   const [products, setProducts] = useState([]);
   const [suppliers, setSuppliers] = useState([]);
 
+  const [isError, setIsError] = useState(false);
+  const [errors, setErrors] = useState("");
+
   useEffect(() => {
-    loadAppData();
+    loadData();
   }, []);
 
-  const loadAppData = async () => {
-    await loadConstants();
-    await loadProducts();
-    await loadSuppliers();
+  const loadData = async () => {
+    loadConstants();
+    loadProducts();
+    loadSuppliers();
   };
 
   const loadConstants = async () => {
     const response = await constantsService.handleGetConstants();
-    if (response.isError) return alert(response.error);
+    if (response.isError) return handleError(response.error);
     setConstants(response);
   };
 
   const loadProducts = async () => {
     const response = await productsService.handleGetProducts();
-    if (response.isError) return alert(response.error);
+    if (response.isError) return handleError(response.error);
     setProducts(response);
   };
 
   const loadSuppliers = async () => {
     const response = await suppliersService.handleGetSuppliers();
-    if (response.isError) return alert(response.error);
+    if (response.isError) return handleError(response.error);
     setSuppliers(response);
+  };
+
+  const handleError = (message) => {
+    setIsError(true);
+    setErrors((err) => err.concat(`${message}`));
   };
 
   return (
@@ -51,21 +60,28 @@ const App = () => {
       <div className="app">
         <Navbar />
         <div className="content">
+          {isError && (
+            <AlertDialog
+              title="Error"
+              message={errors}
+              handleDismiss={() => setIsError(false)}
+            />
+          )}
           <Switch>
             <ConstantsContext.Provider value={{ constants }}>
               <ProductsContext.Provider value={{ products, setProducts }}>
                 <SuppliersContext.Provider value={{ suppliers, setSuppliers }}>
                   <Route exact path="/">
-                    <Dashboard />
+                    <DashboardPage />
                   </Route>
                   <Route path="/products">
-                    <Products />
+                    <ProductsPage />
                   </Route>
                   <Route path="/suppliers">
-                    <Suppliers />
+                    <SuppliersPage />
                   </Route>
                   <Route path="/inventory">
-                    <Inventory />
+                    <InventoryPage />
                   </Route>
                 </SuppliersContext.Provider>
               </ProductsContext.Provider>
