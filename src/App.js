@@ -19,10 +19,14 @@ const App = () => {
   const [suppliers, setSuppliers] = useState([]);
 
   useEffect(() => {
-    loadConstants();
-    loadProducts();
-    loadSuppliers();
+    loadAppData();
   }, []);
+
+  const loadAppData = async () => {
+    await loadConstants();
+    await loadProducts();
+    await loadSuppliers();
+  };
 
   const loadConstants = async () => {
     const response = await constantsService.handleGetConstants();
