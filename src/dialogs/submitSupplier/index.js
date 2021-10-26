@@ -38,6 +38,7 @@ const SubmitSupplier = ({ dismiss, handleSubmit }) => {
         </div>
         {/** order days */}
         <h3 className="input-title">Order</h3>
+        <h5>Select one or more.</h5>
         <div className="checkbox-selection-container">
           <div role="group" aria-labelledby="checkbox-group">
             {constants.HEB &&
@@ -48,6 +49,7 @@ const SubmitSupplier = ({ dismiss, handleSubmit }) => {
         </div>
         {/** delivery days */}
         <h3 className="input-title">Delivery</h3>
+        <h5>Select one or more.</h5>
         <div className="checkbox-selection-container">
           <div role="group" aria-labelledby="checkbox-group">
             {constants.HEB &&
