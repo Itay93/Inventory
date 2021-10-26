@@ -1,13 +1,13 @@
-import "./style.css";
+import "../config/style.css";
 import React, { useState, useContext } from "react";
 import { Dialog, DialogContent, Button } from "@material-ui/core";
 
-import ConstantsContext from "../../context/Constants";
-import SuppliersContext from "../../context/Suppliers";
-import suppliersService from "../../services/suppliers";
-import LoadingOverlay from "../LoadingOverlay";
-import SubmitSupplier from "../../dialogs/submitSupplier";
-import SuppliersTable from "../../components/tables/suppliers/SuppliersTable";
+import ConstantsContext from "../context/ConstantsContext";
+import SuppliersContext from "../context/SuppliersContext";
+import suppliersService from "../services/suppliersService";
+import LoadingOverlay from "./LoadingOverlay";
+import SubmitSupplier from "../dialogs/SubmitSupplierDialog";
+import SuppliersTable from "../components/tables/suppliers/SuppliersTable";
 
 const Suppliers = () => {
   const { constants } = useContext(ConstantsContext);
@@ -31,7 +31,6 @@ const Suppliers = () => {
   return (
     <div className="content">
       {loading && <LoadingOverlay />}
-      <h1>Suppliers</h1>
       <div className="buttons">
         <Button variant="contained" onClick={() => setShowSubmitDialog(true)}>
           Submit Supplier

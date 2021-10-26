@@ -1,14 +1,14 @@
-import products from "../apis/products";
+import productsApi from "../apis/productsApi";
 import Product from "../classes/Product";
 
 const handleGetProducts = async () => {
-  const response = await products.getProducts();
+  const response = await productsApi.getProducts();
   if (!response.ok) return response.data;
   return response.data.products;
 };
 
 const handlePostProduct = async (values) => {
-  const response = await products.postProduct(new Product(values));
+  const response = await productsApi.postProduct(new Product(values));
   if (!response.ok) return response.data;
   return response.data.product;
 };

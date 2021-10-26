@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import ConstantsContext from "./context/Constants";
-import constantsService from "./services/constants";
-import ProductsContext from "./context/Products";
-import productsService from "./services/products";
-import SuppliersContext from "./context/Suppliers";
-import suppliersService from "./services/suppliers";
-import Navbar from "./router/navbar";
-import Dashboard from "./pages/dashboard";
-import Products from "./pages/products";
-import Suppliers from "./pages/suppliers";
-import Inventory from "./pages/inventory";
+import ConstantsContext from "./context/ConstantsContext";
+import constantsService from "./services/constantsService";
+import ProductsContext from "./context/ProductsContext";
+import productsService from "./services/productsService";
+import SuppliersContext from "./context/SuppliersContext";
+import suppliersService from "./services/suppliersService";
+import Navbar from "./router/Navbar";
+import Dashboard from "./pages/DashboardPage";
+import Products from "./pages/ProductsPage";
+import Suppliers from "./pages/SuppliersPage";
+import Inventory from "./pages/InventoryPage";
 
 const App = () => {
   const [constants, setConstants] = useState({});

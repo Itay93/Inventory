@@ -1,13 +1,13 @@
-import "./style.css";
+import "../config/style.css";
 import React, { useState, useContext } from "react";
 import { Dialog, DialogContent, Button } from "@material-ui/core";
 
-import ConstantsContext from "../../context/Constants";
-import ProductsContext from "../../context/Products";
-import productsService from "../../services/products";
-import SubmitProduct from "../../dialogs/submitProduct";
-import LoadingOverlay from "../LoadingOverlay";
-import ProductsTable from "../../components/tables/products/ProductsTable";
+import ConstantsContext from "../context/ConstantsContext";
+import ProductsContext from "../context/ProductsContext";
+import productsService from "../services/productsService";
+import SubmitProduct from "../dialogs/SubmitProductDialog";
+import LoadingOverlay from "./LoadingOverlay";
+import ProductsTable from "../components/tables/products/ProductsTable";
 
 const Products = () => {
   const { constants } = useContext(ConstantsContext);
@@ -31,7 +31,6 @@ const Products = () => {
   return (
     <div className="content">
       {loading && <LoadingOverlay />}
-      <h1>Products</h1>
       <div className="buttons">
         <Button variant="contained" onClick={() => setShowSubmitDialog(true)}>
           Submit Product

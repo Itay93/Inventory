@@ -1,9 +1,0 @@
-.inventory-container {
-  direction: rtl;
-  display: flex;
-  flex-direction: column;
-}
-
-.table-container {
-  margin-top: 10px;
-}

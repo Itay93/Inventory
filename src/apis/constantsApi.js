@@ -1,9 +1,9 @@
-import client from "./client";
+import clientApi from "./clientApi";
 
 const END_POINT = "/api/constants";
 
 const getConstants = () => {
-  return client.get(END_POINT);
+  return clientApi.get(END_POINT);
 };
 
 export default { getConstants };

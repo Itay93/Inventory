@@ -1,12 +1,12 @@
-import "./style.css";
+import "../config/style.css";
 import { Link } from "react-router-dom";
 
-import routes from "../routes";
+import routes from "./routes";
 
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <h1>No Name Company</h1>
+      <h1>Company</h1>
       <div className="links">
         <Link to="/">{routes.DASHBOARD}</Link>
         <Link to="/products">{routes.PRODUCTS}</Link>

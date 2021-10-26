@@ -1,12 +1,12 @@
-import "./style.css";
+import "../config/style.css";
 import React, { useContext, useState } from "react";
 import { Tabs, Tab } from "@material-ui/core";
 
-import ConstantsContext from "../../context/Constants";
-import ProductsContext from "../../context/Products";
-import productsService from "../../services/products";
-import InventoryTable from "../../components/tables/inventory/InventoryTable";
-import TabPanel from "../../components/TabPanel";
+import ConstantsContext from "../context/ConstantsContext";
+import ProductsContext from "../context/ProductsContext";
+import productsService from "../services/productsService";
+import InventoryTable from "../components/tables/inventory/InventoryTable";
+import TabPanel from "../components/TabPanel";
 
 const Inventory = () => {
   const { constants } = useContext(ConstantsContext);

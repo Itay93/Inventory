@@ -1,17 +1,17 @@
-import "./style.css";
+import "../config/style.css";
 import React, { useContext } from "react";
 import { Button } from "@material-ui/core";
 import { Field } from "formik";
 
-import ConstantsContext from "../../context/Constants";
-import validationsSchemas from "../../utils/validationsSchemas";
-import initialsValues from "../../utils/initialsValues";
+import ConstantsContext from "../context/ConstantsContext";
+import validationsSchemas from "../utils/validationsSchemas";
+import initialsValues from "../utils/initialsValues";
 import {
   Form,
   FormTextField,
   FormSelectField,
   FormSubmitButton,
-} from "../../components/forms";
+} from "../components/forms";
 
 const SubmitProduct = ({ dismiss, handleSubmit }) => {
   const { constants } = useContext(ConstantsContext);
