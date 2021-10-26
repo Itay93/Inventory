@@ -2,7 +2,7 @@ import { TableCell, TableRow } from "@material-ui/core";
 
 import TableTextField from "../TableTextField";
 
-const DailyItem = ({ p, pId, onInputChange }) => {
+const InventoryTableItem = ({ p, pId, onInputChange }) => {
   return (
     <TableRow
       key={pId.toString()}
@@ -98,4 +98,4 @@ const DailyItem = ({ p, pId, onInputChange }) => {
   );
 };
 
-export default DailyItem;
+export default InventoryTableItem;

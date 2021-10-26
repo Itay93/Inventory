@@ -8,9 +8,9 @@ import {
   TableRow,
 } from "@material-ui/core";
 
-import DailyItem from "./DailyItem";
+import InventoryTableItem from "./InventoryTableItem";
 
-const Daily = ({ columns, data, onInputChange }) => {
+const InventoryTable = ({ columns, data, onInputChange }) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }}>
@@ -23,7 +23,11 @@ const Daily = ({ columns, data, onInputChange }) => {
         </TableHead>
         <TableBody>
           {data.map((p) => (
-            <DailyItem p={p} pId={p._id} onInputChange={onInputChange} />
+            <InventoryTableItem
+              p={p}
+              pId={p._id}
+              onInputChange={onInputChange}
+            />
           ))}
         </TableBody>
       </Table>
@@ -31,4 +35,4 @@ const Daily = ({ columns, data, onInputChange }) => {
   );
 };
 
-export default Daily;
+export default InventoryTable;
