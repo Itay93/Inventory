@@ -63,7 +63,7 @@ const SubmitSupplier = ({ dismiss, handleSubmit }) => {
           <FormTextField label="Sales agent" name="salesAgent" />
           {/** number */}
           <div className="middle-input">
-            <FormTextField label="Phone number" name="number" type="tel" />
+            <FormTextField label="Phone number" name="number" />
           </div>
           {/** order by */}
           <FormSelectField
