@@ -14,3 +14,8 @@
 .buttons {
   margin-top: 10px;
 }
+
+.products-table-container {
+  direction: rtl;
+  margin-top: 20px;
+}

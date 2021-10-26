@@ -1,13 +1,16 @@
 import "./style.css";
 import React, { useState, useContext } from "react";
-import { Dialog, DialogContent, Button } from "@material-ui/core";
+import { Dialog, DialogContent, Button, Tabs, Tab } from "@material-ui/core";
 
+import ConstantsContext from "../../context/Constants";
 import ProductsContext from "../../context/Products";
 import productsService from "../../services/products";
 import SubmitProduct from "../../dialogs/submitProduct";
 import LoadingOverlay from "../LoadingOverlay";
+import ProductsTable from "../../components/tables/products/ProductsTable";
 
 const Products = () => {
+  const { constants } = useContext(ConstantsContext);
   const { products, setProducts } = useContext(ProductsContext);
 
   const [loading, setLoading] = useState(false);
@@ -42,6 +45,14 @@ const Products = () => {
           </DialogContent>
         </Dialog>
       </div>
+      {constants.HEB && products && (
+        <div className="products-table-container">
+          <ProductsTable
+            columns={constants.HEB.PRODUCTS_TABLE_COLUMNS}
+            data={products}
+          />
+        </div>
+      )}
     </div>
   );
 };
