@@ -9,7 +9,7 @@ const InventoryTableItem = ({ p, pId, onInputChange }) => {
       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
     >
       {/** supplier name */}
-      <TableCell component="th" scope="row">
+      <TableCell align="center" component="th" scope="row">
         {p.supplier.name}
       </TableCell>
       {/** product name */}

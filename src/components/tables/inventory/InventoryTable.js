@@ -17,7 +17,11 @@ const InventoryTable = ({ columns, data, onInputChange }) => {
         <TableHead>
           <TableRow>
             {columns.map((c, index) => {
-              return <TableCell key={index.toString()}>{c}</TableCell>;
+              return (
+                <TableCell align="center" key={index.toString()}>
+                  {c}
+                </TableCell>
+              );
             })}
           </TableRow>
         </TableHead>
