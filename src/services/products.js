@@ -13,12 +13,19 @@ const handlePostProduct = async (values) => {
   return response.data.product;
 };
 
-const handleInputChange = (targetColumn, newValue, index, products) => {
+const handleInputChange = (targetColumn, newValue, pId, products) => {
   const updatedProducts = [...products];
-  const { product, sizes, inStock, calculations } = updatedProducts[index];
+
+  const resultArray = updatedProducts.filter((p) => {
+    return p._id === pId;
+  });
+  if (resultArray.length === 0) return;
+  const targetProduct = resultArray[0];
+
+  const { product, sizes, inStock, calculations } = targetProduct;
   // handle insert order
   if (targetColumn === "insertOrder") {
-    updatedProducts[index].insertOrder = newValue;
+    targetProduct.insertOrder = newValue;
     return updatedProducts;
   }
   // handle all other inputs

@@ -21,7 +21,7 @@ const Products = () => {
     // error
     if (response.isError) return alert(response.error);
     // success
-    setProducts([...products, response]);
+    setProducts([response, ...products]);
     alert("Product successfully saved!");
   };
 

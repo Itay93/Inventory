@@ -36,16 +36,6 @@ const SubmitSupplier = ({ dismiss, handleSubmit }) => {
             />
           </div>
         </div>
-        {/** delivery days */}
-        <h3 className="input-title">Delivery</h3>
-        <div className="checkbox-selection-container">
-          <div role="group" aria-labelledby="checkbox-group">
-            {constants.HEB &&
-              constants.HEB.SUPPLIER.DELIVERY_DAYS.map((d) => {
-                return <FormCheckbox name="deliveryDays" label={d} value={d} />;
-              })}
-          </div>
-        </div>
         {/** order days */}
         <h3 className="input-title">Order</h3>
         <div className="checkbox-selection-container">
@@ -53,6 +43,16 @@ const SubmitSupplier = ({ dismiss, handleSubmit }) => {
             {constants.HEB &&
               constants.HEB.SUPPLIER.ORDER_DAYS.map((d) => {
                 return <FormCheckbox name="orderDays" label={d} value={d} />;
+              })}
+          </div>
+        </div>
+        {/** delivery days */}
+        <h3 className="input-title">Delivery</h3>
+        <div className="checkbox-selection-container">
+          <div role="group" aria-labelledby="checkbox-group">
+            {constants.HEB &&
+              constants.HEB.SUPPLIER.DELIVERY_DAYS.map((d) => {
+                return <FormCheckbox name="deliveryDays" label={d} value={d} />;
               })}
           </div>
         </div>

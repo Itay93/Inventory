@@ -2,10 +2,10 @@ import { TableCell, TableRow } from "@material-ui/core";
 
 import TableTextField from "../TableTextField";
 
-const DailyItem = ({ p, index, onInputChange }) => {
+const DailyItem = ({ p, pId, onInputChange }) => {
   return (
     <TableRow
-      key={index.toString()}
+      key={pId.toString()}
       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
     >
       {/** supplier name */}
@@ -27,7 +27,7 @@ const DailyItem = ({ p, index, onInputChange }) => {
         <TableTextField
           id="kg"
           value={p.inStock.kg}
-          onChange={(e) => onInputChange(e.target, index)}
+          onChange={(e) => onInputChange(e.target, pId)}
         />
       </TableCell>
       {/** box */}
@@ -35,7 +35,7 @@ const DailyItem = ({ p, index, onInputChange }) => {
         <TableTextField
           id="box"
           value={p.inStock.box}
-          onChange={(e) => onInputChange(e.target, index)}
+          onChange={(e) => onInputChange(e.target, pId)}
         />
       </TableCell>
       {/** unit */}
@@ -43,7 +43,7 @@ const DailyItem = ({ p, index, onInputChange }) => {
         <TableTextField
           id="unit"
           value={p.inStock.unit}
-          onChange={(e) => onInputChange(e.target, index)}
+          onChange={(e) => onInputChange(e.target, pId)}
         />
       </TableCell>
       {/** third */}
@@ -51,7 +51,7 @@ const DailyItem = ({ p, index, onInputChange }) => {
         <TableTextField
           id="third"
           value={p.inStock.third}
-          onChange={(e) => onInputChange(e.target, index)}
+          onChange={(e) => onInputChange(e.target, pId)}
         />
       </TableCell>
       {/** double third */}
@@ -59,7 +59,7 @@ const DailyItem = ({ p, index, onInputChange }) => {
         <TableTextField
           id="dThird"
           value={p.inStock.dThird}
-          onChange={(e) => onInputChange(e.target, index)}
+          onChange={(e) => onInputChange(e.target, pId)}
         />
       </TableCell>
       {/** box dough */}
@@ -67,7 +67,7 @@ const DailyItem = ({ p, index, onInputChange }) => {
         <TableTextField
           id="boxDough"
           value={p.inStock.boxDough}
-          onChange={(e) => onInputChange(e.target, index)}
+          onChange={(e) => onInputChange(e.target, pId)}
         />
       </TableCell>
       {/** ambat */}
@@ -75,7 +75,7 @@ const DailyItem = ({ p, index, onInputChange }) => {
         <TableTextField
           id="ambat"
           value={p.inStock.ambat}
-          onChange={(e) => onInputChange(e.target, index)}
+          onChange={(e) => onInputChange(e.target, pId)}
         />
       </TableCell>
       {/** total in stock */}
@@ -91,7 +91,7 @@ const DailyItem = ({ p, index, onInputChange }) => {
         <TableTextField
           id="insertOrder"
           value={p.insertOrder}
-          onChange={(e) => onInputChange(e.target, index)}
+          onChange={(e) => onInputChange(e.target, pId)}
         />
       </TableCell>
     </TableRow>

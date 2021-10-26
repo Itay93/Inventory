@@ -22,8 +22,8 @@ const Daily = ({ columns, data, onInputChange }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((p, index) => (
-            <DailyItem p={p} index={index} onInputChange={onInputChange} />
+          {data.map((p) => (
+            <DailyItem p={p} pId={p._id} onInputChange={onInputChange} />
           ))}
         </TableBody>
       </Table>

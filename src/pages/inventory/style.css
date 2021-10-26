@@ -5,13 +5,12 @@
   color: #333;
 }
 
-.content {
-  padding: 10px;
+.inventory-container {
+  direction: rtl;
   display: flex;
   flex-direction: column;
 }
 
 .table-container {
-  direction: rtl;
-  margin-top: 20px;
+  margin-top: 10px;
 }
