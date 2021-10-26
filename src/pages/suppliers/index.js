@@ -2,12 +2,15 @@ import "./style.css";
 import React, { useState, useContext } from "react";
 import { Dialog, DialogContent, Button } from "@material-ui/core";
 
+import ConstantsContext from "../../context/Constants";
 import SuppliersContext from "../../context/Suppliers";
 import suppliersService from "../../services/suppliers";
 import LoadingOverlay from "../LoadingOverlay";
 import SubmitSupplier from "../../dialogs/submitSupplier";
+import SuppliersTable from "../../components/tables/suppliers/SuppliersTable";
 
 const Suppliers = () => {
+  const { constants } = useContext(ConstantsContext);
   const { suppliers, setSuppliers } = useContext(SuppliersContext);
 
   const [loading, setLoading] = useState(false);
@@ -21,7 +24,7 @@ const Suppliers = () => {
     // error
     if (response.isError) return alert(response.error);
     // success
-    setSuppliers([...suppliers, response]);
+    setSuppliers([response, ...suppliers]);
     alert("Supplier successfully saved!");
   };
 
@@ -42,6 +45,14 @@ const Suppliers = () => {
           </DialogContent>
         </Dialog>
       </div>
+      {constants.HEB && suppliers && (
+        <div className="products-table-container">
+          <SuppliersTable
+            columns={constants.HEB.SUPPLIERS_TABLE_COLUMNS}
+            data={suppliers}
+          />
+        </div>
+      )}
     </div>
   );
 };

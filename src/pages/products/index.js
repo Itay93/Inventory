@@ -1,6 +1,6 @@
 import "./style.css";
 import React, { useState, useContext } from "react";
-import { Dialog, DialogContent, Button, Tabs, Tab } from "@material-ui/core";
+import { Dialog, DialogContent, Button } from "@material-ui/core";
 
 import ConstantsContext from "../../context/Constants";
 import ProductsContext from "../../context/Products";
