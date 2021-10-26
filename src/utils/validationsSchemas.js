@@ -25,7 +25,7 @@ const supplier = yup.object().shape({
   deliveryDays: yup.array().min(1).required("Required"),
   orderDays: yup.array().min(1).required("Required"),
   salesAgent: yup.string().required("Required"),
-  number: yup.string().max(11).required("Required"),
+  number: yup.string().max(11, "Max of 10 + '-'").required("Required"),
   orderBy: yup.string().required("Required"),
 });
 
