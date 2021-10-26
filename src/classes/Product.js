@@ -4,6 +4,7 @@ class Product {
       name: values.pName,
       price: values.price,
       valueInSales: values.valueInSales,
+      includeInMonthlyInventory: values.includeInMonthlyInventory,
     };
     this.supplier = {
       name: values.sName,
