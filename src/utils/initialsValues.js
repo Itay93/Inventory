@@ -2,6 +2,7 @@ const product = {
   pName: "",
   price: "",
   valueInSales: "",
+  includeInMonthlyInventory: false,
   sName: "",
   type: "",
   stockDaily: "",

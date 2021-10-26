@@ -4,6 +4,7 @@ const product = yup.object().shape({
   pName: yup.string().required("Required"),
   price: yup.number().min(0, "Min of 0").required("Required"),
   valueInSales: yup.number().min(0, "Min of 0").required("Required"),
+  includeInMonthlyInventory: yup.boolean().required(),
   sName: yup.string().required("Required"),
   type: yup.string().required("Required"),
   stockDaily: yup.string().required("Required"),

@@ -1,6 +1,7 @@
 import "./style.css";
 import React, { useContext } from "react";
 import { Button } from "@material-ui/core";
+import { Field } from "formik";
 
 import ConstantsContext from "../../context/Constants";
 import validationsSchemas from "../../utils/validationsSchemas";
@@ -27,16 +28,26 @@ const SubmitProduct = ({ dismiss, handleSubmit }) => {
         <div className="inputs-container">
           {/** name */}
           <FormTextField label="Name" name="pName" />
-          {/** price */}
-          <div className="middle-input">
-            <FormTextField label="Price" name="price" type="number" />
+          {/** include in monthly inventory */}
+          <div className="right-input">
+            <label>
+              <Field type="checkbox" name="includeInMonthlyInventory" />
+              Include in monthly inventory table
+            </label>
           </div>
+        </div>
+        {/** more product */}
+        <div className="inputs-container">
+          {/** price */}
+          <FormTextField label="Price" name="price" type="number" />
           {/** value in sales */}
-          <FormTextField
-            label="Value in sales"
-            name="valueInSales"
-            type="number"
-          />
+          <div className="right-input">
+            <FormTextField
+              label="Value in sales"
+              name="valueInSales"
+              type="number"
+            />
+          </div>
         </div>
         {/** supplier */}
         <h3 className="input-title">Supplier</h3>

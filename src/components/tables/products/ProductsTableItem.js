@@ -14,6 +14,10 @@ const ProductsTableItem = ({ p, pId }) => {
       <TableCell align="center">{p.product.price}</TableCell>
       {/** product value in sales */}
       <TableCell align="center">{p.product.valueInSales}</TableCell>
+      {/** include in monthly inventory */}
+      <TableCell align="center">
+        {p.product.includeInMonthlyInventory ? "V" : "X"}
+      </TableCell>
       {/** supplier name */}
       <TableCell align="center">{p.supplier.name}</TableCell>
       {/** supplier type */}
