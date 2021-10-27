@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Button,
   Dialog,
@@ -9,11 +9,9 @@ import {
 } from "@material-ui/core";
 
 const AlertDialog = ({ title, message, handleDismiss }) => {
-  const [show, setShow] = useState(true);
-
   return (
     <div>
-      <Dialog open={show}>
+      <Dialog open>
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>
           <DialogContentText>{message}</DialogContentText>
