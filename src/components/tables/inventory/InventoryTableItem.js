@@ -2,10 +2,10 @@ import { TableCell, TableRow } from "@material-ui/core";
 
 import TableTextField from "../TableTextField";
 
-const InventoryTableItem = ({ p, pId, onInputChange }) => {
+const InventoryTableItem = ({ p, onInputChange }) => {
   return (
     <TableRow
-      key={pId.toString()}
+      key={p._id}
       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
     >
       {/** supplier name */}
@@ -27,7 +27,7 @@ const InventoryTableItem = ({ p, pId, onInputChange }) => {
         <TableTextField
           id="kg"
           value={p.inStock.kg}
-          onChange={(e) => onInputChange(e.target, pId)}
+          onChange={(e) => onInputChange(e.target, p)}
         />
       </TableCell>
       {/** box */}
@@ -35,7 +35,7 @@ const InventoryTableItem = ({ p, pId, onInputChange }) => {
         <TableTextField
           id="box"
           value={p.inStock.box}
-          onChange={(e) => onInputChange(e.target, pId)}
+          onChange={(e) => onInputChange(e.target, p)}
         />
       </TableCell>
       {/** unit */}
@@ -43,7 +43,7 @@ const InventoryTableItem = ({ p, pId, onInputChange }) => {
         <TableTextField
           id="unit"
           value={p.inStock.unit}
-          onChange={(e) => onInputChange(e.target, pId)}
+          onChange={(e) => onInputChange(e.target, p)}
         />
       </TableCell>
       {/** third */}
@@ -51,7 +51,7 @@ const InventoryTableItem = ({ p, pId, onInputChange }) => {
         <TableTextField
           id="third"
           value={p.inStock.third}
-          onChange={(e) => onInputChange(e.target, pId)}
+          onChange={(e) => onInputChange(e.target, p)}
         />
       </TableCell>
       {/** double third */}
@@ -59,7 +59,7 @@ const InventoryTableItem = ({ p, pId, onInputChange }) => {
         <TableTextField
           id="dThird"
           value={p.inStock.dThird}
-          onChange={(e) => onInputChange(e.target, pId)}
+          onChange={(e) => onInputChange(e.target, p)}
         />
       </TableCell>
       {/** box dough */}
@@ -67,7 +67,7 @@ const InventoryTableItem = ({ p, pId, onInputChange }) => {
         <TableTextField
           id="boxDough"
           value={p.inStock.boxDough}
-          onChange={(e) => onInputChange(e.target, pId)}
+          onChange={(e) => onInputChange(e.target, p)}
         />
       </TableCell>
       {/** ambat */}
@@ -75,7 +75,7 @@ const InventoryTableItem = ({ p, pId, onInputChange }) => {
         <TableTextField
           id="ambat"
           value={p.inStock.ambat}
-          onChange={(e) => onInputChange(e.target, pId)}
+          onChange={(e) => onInputChange(e.target, p)}
         />
       </TableCell>
       {/** total in stock */}
@@ -91,7 +91,7 @@ const InventoryTableItem = ({ p, pId, onInputChange }) => {
         <TableTextField
           id="insertOrder"
           value={p.insertOrder}
-          onChange={(e) => onInputChange(e.target, pId)}
+          onChange={(e) => onInputChange(e.target, p)}
         />
       </TableCell>
     </TableRow>

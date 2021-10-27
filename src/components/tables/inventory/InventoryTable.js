@@ -27,11 +27,7 @@ const InventoryTable = ({ columns, data, onInputChange }) => {
         </TableHead>
         <TableBody>
           {data.map((p) => (
-            <InventoryTableItem
-              p={p}
-              pId={p._id}
-              onInputChange={onInputChange}
-            />
+            <InventoryTableItem p={p} onInputChange={onInputChange} />
           ))}
         </TableBody>
       </Table>

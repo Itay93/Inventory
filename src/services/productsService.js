@@ -13,75 +13,64 @@ const handlePostProduct = async (values) => {
   return response.data.product;
 };
 
-const handleInputChange = (targetColumn, newValue, pId, products) => {
-  const updatedProducts = [...products];
-
-  const resultArray = updatedProducts.filter((p) => {
-    return p._id === pId;
-  });
-  if (resultArray.length === 0) return;
-  const targetProduct = resultArray[0];
-
-  const { product, sizes, inStock, calculations } = targetProduct;
-  // handle insert order
-  if (targetColumn === "insertOrder") {
-    targetProduct.insertOrder = newValue;
-    return updatedProducts;
-  }
-  // handle all other inputs
-  inStock[targetColumn] = newValue;
-  inStock.totalInStock = handleCalculateTotalInStock(sizes, inStock);
-  calculations.orderInventoryValue = handleCalculateInventoryValueInSales(
-    inStock.totalInStock,
-    product.valueInSales
-  );
-  calculations.outOfStock = handleCalculateOutOfStock(
-    calculations.orderInventoryValue,
-    20000
-  );
-  calculations.needToOrder = handleCalculateNeedToOrder(
-    calculations.outOfStock,
-    product.valueInSales
-  );
-  return updatedProducts;
+const handleDeleteProduct = async (pId) => {
+  const response = await productsApi.deleteProduct(pId);
+  if (!response.ok) return response.data;
+  return response.data.product;
 };
 
-const handleCalculateTotalInStock = (sizes, inStockValues) => {
-  return (
-    inStockValues.kg * sizes.kg +
-    inStockValues.box * sizes.box +
-    inStockValues.unit * sizes.unit +
-    inStockValues.third * sizes.third +
-    inStockValues.dThird * sizes.dThird +
-    inStockValues.boxDough * sizes.boxDough +
-    inStockValues.ambat * sizes.ambat
+const handleInputsChange = (column, input, p) => {
+  if (column === "insertOrder") return (p.insertOrder = input);
+  p.inStock[column] = input;
+  handleCalculateTotalInStock(p.sizes, p.inStock);
+  handleCalculateInventoryValueInSales(
+    p.calculations,
+    p.inStock.totalInStock,
+    p.product.valueInSales
+  );
+  handleCalculateOutOfStock(p.calculations, 20000);
+  handleCalculateNeedToOrder(p.calculations, p.product.valueInSales);
+};
+
+const handleCalculateTotalInStock = (sizes, inStock) => {
+  inStock.totalInStock = (
+    inStock.kg * sizes.kg +
+    inStock.box * sizes.box +
+    inStock.unit * sizes.unit +
+    inStock.third * sizes.third +
+    inStock.dThird * sizes.dThird +
+    inStock.boxDough * sizes.boxDough +
+    inStock.ambat * sizes.ambat
   ).toFixed(2);
 };
 
-const handleCalculateInventoryValueInSales = (totalInStock, salesValue) => {
-  return (totalInStock * salesValue).toFixed(2);
+const handleCalculateInventoryValueInSales = (
+  calculations,
+  totalInStock,
+  valueInSales
+) => {
+  calculations.orderInventoryValue = (totalInStock * valueInSales).toFixed(2);
 };
 
 const handleCalculateMonthlyInventoryValue = (totalInStock, productPrice) => {
   return (totalInStock * productPrice).toFixed(2);
 };
 
-const handleCalculateOutOfStock = (orderInventoryValue, expectedSales) => {
-  const outOfStock = (orderInventoryValue - expectedSales).toFixed(2);
-  return outOfStock > 0 ? 0 : outOfStock;
+const handleCalculateOutOfStock = (calculations, expectedSales) => {
+  const outOfStock = calculations.orderInventoryValue - expectedSales;
+  calculations.outOfStock = outOfStock > 0 ? 0 : outOfStock.toFixed(2);
 };
 
-const handleCalculateNeedToOrder = (outOfStock, salesValue) => {
-  return outOfStock < 0 ? -(outOfStock / salesValue).toFixed(2) : 0;
+const handleCalculateNeedToOrder = (calculations, valueInSales) => {
+  calculations.needToOrder =
+    calculations.outOfStock < 0
+      ? -(calculations.outOfStock / valueInSales).toFixed(2)
+      : 0;
 };
 
 export default {
   handleGetProducts,
   handlePostProduct,
-  handleInputChange,
-  handleCalculateTotalInStock,
-  handleCalculateMonthlyInventoryValue,
-  handleCalculateInventoryValueInSales,
-  handleCalculateOutOfStock,
-  handleCalculateNeedToOrder,
+  handleDeleteProduct,
+  handleInputsChange,
 };

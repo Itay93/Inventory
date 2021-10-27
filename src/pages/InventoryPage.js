@@ -14,10 +14,9 @@ const Inventory = () => {
 
   const [tabIndex, setTabIndex] = useState(0);
 
-  const handleInputChange = (e, pId) => {
-    setProducts(
-      productsService.handleInputChange(e.id, e.value, pId, products)
-    );
+  const handleInputsChange = (e, p) => {
+    productsService.handleInputsChange(e.id, e.value, p);
+    setProducts([...products]);
   };
 
   return (
@@ -39,7 +38,7 @@ const Inventory = () => {
                   data={products.filter((p) => {
                     return p.supplier.type === t;
                   })}
-                  onInputChange={(e, pId) => handleInputChange(e, pId)}
+                  onInputChange={(e, p) => handleInputsChange(e, p)}
                 />
               </div>
             </TabPanel>

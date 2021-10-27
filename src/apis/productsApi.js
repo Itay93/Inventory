@@ -10,7 +10,12 @@ const postProduct = (product) => {
   return clientApi.post(END_POINT, product);
 };
 
+const deleteProduct = (pId) => {
+  return clientApi.delete(`${END_POINT}/${pId}`);
+};
+
 export default {
   getProducts,
   postProduct,
+  deleteProduct,
 };
