@@ -61,7 +61,7 @@ const SubmitProductFormDialog = ({ show, dismiss, handleSubmit }) => {
                 {/** name */}
                 <FormSupplierSelectField
                   label="Name"
-                  name="sName"
+                  name="supplier"
                   suppliers={suppliers}
                 />
               </div>

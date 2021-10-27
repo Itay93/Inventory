@@ -3,7 +3,7 @@ const product = {
   price: "",
   valueInSales: "",
   includeInMonthlyInventory: false,
-  sName: "",
+  supplier: "",
   stockDaily: "",
   stockMonthly: "",
   inOrder: "",

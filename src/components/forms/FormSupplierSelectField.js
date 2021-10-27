@@ -6,7 +6,7 @@ const FormSupplierSelectField = ({ label, name, suppliers }) => {
     useFormikContext();
   return (
     <TextField
-      style={{ width: 150 }}
+      style={{ width: 170 }}
       select
       label={label}
       id={name}
@@ -19,7 +19,10 @@ const FormSupplierSelectField = ({ label, name, suppliers }) => {
       variant="filled"
     >
       {suppliers.map((s) => (
-        <MenuItem key={s._id} value={s.name}>
+        <MenuItem
+          key={s._id}
+          value={JSON.stringify({ id: s._id, name: s.name, type: s.type })}
+        >
           {s.name}
         </MenuItem>
       ))}

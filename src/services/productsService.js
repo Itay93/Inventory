@@ -8,7 +8,9 @@ const handleGetProducts = async () => {
 };
 
 const handlePostProduct = async (values) => {
-  const response = await productsApi.postProduct(new Product(values));
+  const response = await productsApi.postProduct(
+    new Product(values, JSON.parse(values.supplier))
+  );
   if (!response.ok) return response.data;
   return response.data.product;
 };

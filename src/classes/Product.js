@@ -1,5 +1,5 @@
 class Product {
-  constructor(values) {
+  constructor(values, productSupplierObj) {
     this.product = {
       name: values.pName,
       price: values.price,
@@ -7,8 +7,8 @@ class Product {
       includeInMonthlyInventory: values.includeInMonthlyInventory,
     };
     this.supplier = {
-      name: values.sName,
-      type: values.type,
+      name: productSupplierObj.name,
+      type: productSupplierObj.type,
     };
     this.sizes = {
       stockDaily: values.stockDaily,
