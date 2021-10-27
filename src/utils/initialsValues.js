@@ -4,7 +4,6 @@ const product = {
   valueInSales: "",
   includeInMonthlyInventory: false,
   sName: "",
-  type: "",
   stockDaily: "",
   stockMonthly: "",
   inOrder: "",
