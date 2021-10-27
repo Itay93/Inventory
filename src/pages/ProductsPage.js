@@ -1,11 +1,11 @@
 import "../config/style.css";
 import React, { useState, useContext } from "react";
-import { Dialog, DialogContent, Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 import ConstantsContext from "../context/ConstantsContext";
 import ProductsContext from "../context/ProductsContext";
 import productsService from "../services/productsService";
-import SubmitProduct from "../dialogs/SubmitProductDialog";
+import SubmitProductFormDialog from "../dialogs/SubmitProductFormDialog";
 import LoadingOverlay from "./LoadingOverlay";
 import ProductsTable from "../components/tables/products/ProductsTable";
 
@@ -35,14 +35,11 @@ const Products = () => {
         <Button variant="contained" onClick={() => setShowSubmitDialog(true)}>
           Submit Product
         </Button>
-        <Dialog open={showSubmitDialog}>
-          <DialogContent>
-            <SubmitProduct
-              dismiss={() => setShowSubmitDialog(false)}
-              handleSubmit={(values) => handleSubmitProduct(values)}
-            />
-          </DialogContent>
-        </Dialog>
+        <SubmitProductFormDialog
+          show={showSubmitDialog}
+          dismiss={() => setShowSubmitDialog(false)}
+          handleSubmit={(values) => handleSubmitProduct(values)}
+        />
       </div>
       {constants.HEB && products && (
         <div className="products-table-container">
