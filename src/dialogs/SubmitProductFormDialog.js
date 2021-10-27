@@ -11,6 +11,7 @@ import {
   Form,
   FormTextField,
   FormSelectField,
+  FormSupplierSelectField,
   FormSubmitButton,
 } from "../components/forms";
 
@@ -58,10 +59,10 @@ const SubmitProductFormDialog = ({ show, dismiss, handleSubmit }) => {
               <h3 className="input-title">Supplier</h3>
               <div className="inputs-container">
                 {/** name */}
-                <FormSelectField
+                <FormSupplierSelectField
                   label="Name"
                   name="sName"
-                  options={suppliers}
+                  suppliers={suppliers}
                 />
               </div>
               {/** sizes */}
