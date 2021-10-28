@@ -7,7 +7,7 @@ import {
   DialogTitle,
 } from "@material-ui/core";
 
-const AlertDialog = ({ title, message, handleDismiss }) => {
+const GeneralAlertDialog = ({ title, message, handleDismiss }) => {
   return (
     <div>
       <Dialog open>
@@ -16,11 +16,11 @@ const AlertDialog = ({ title, message, handleDismiss }) => {
           <DialogContentText>{message}</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleDismiss}>OK</Button>
+          <Button onClick={handleDismiss}>Got it</Button>
         </DialogActions>
       </Dialog>
     </div>
   );
 };
 
-export default AlertDialog;
+export default GeneralAlertDialog;
