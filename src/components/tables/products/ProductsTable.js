@@ -26,8 +26,13 @@ const ProductsTable = ({ columns, data, onDelete }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((p) => (
-            <ProductsTableItem p={p} pId={p._id} onDelete={onDelete} />
+          {data.map((p, index) => (
+            <ProductsTableItem
+              p={p}
+              pId={p._id}
+              index={index + 1}
+              onDelete={onDelete}
+            />
           ))}
         </TableBody>
       </Table>

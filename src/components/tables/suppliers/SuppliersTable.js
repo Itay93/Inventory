@@ -26,8 +26,13 @@ const SuppliersTable = ({ columns, data, onDelete }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((s) => (
-            <SuppliersTableItem s={s} sId={s._id} onDelete={onDelete} />
+          {data.map((s, index) => (
+            <SuppliersTableItem
+              s={s}
+              sId={s._id}
+              index={index + 1}
+              onDelete={onDelete}
+            />
           ))}
         </TableBody>
       </Table>

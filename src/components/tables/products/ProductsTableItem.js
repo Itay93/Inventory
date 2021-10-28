@@ -1,15 +1,17 @@
 import { TableCell, TableRow, Button } from "@material-ui/core";
 
-const ProductsTableItem = ({ p, pId, onDelete }) => {
+const ProductsTableItem = ({ p, pId, index, onDelete }) => {
   return (
     <TableRow
       key={pId}
       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
     >
-      {/** product name */}
+      {/** # */}
       <TableCell align="center" component="th" scope="row">
-        {p.product.name}
+        {index}
       </TableCell>
+      {/** product name */}
+      <TableCell align="center">{p.product.name}</TableCell>
       {/** product price */}
       <TableCell align="center">{p.product.price}</TableCell>
       {/** product value in sales */}

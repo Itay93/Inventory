@@ -2,16 +2,18 @@ import { TableCell, TableRow } from "@material-ui/core";
 
 import TableTextField from "../TableTextField";
 
-const InventoryTableItem = ({ p, onInputChange }) => {
+const InventoryTableItem = ({ p, index, onInputChange }) => {
   return (
     <TableRow
       key={p._id}
       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
     >
-      {/** supplier name */}
+      {/** # */}
       <TableCell align="center" component="th" scope="row">
-        {p.supplier.name}
+        {index}
       </TableCell>
+      {/** supplier name */}
+      <TableCell align="center">{p.supplier.name}</TableCell>
       {/** product name */}
       <TableCell align="center">{p.product.name}</TableCell>
       {/** price */}
