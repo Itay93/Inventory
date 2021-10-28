@@ -7,20 +7,20 @@ import {
   DialogTitle,
 } from "@material-ui/core";
 
-const GeneralAlertDialog = ({ title, message, handleDismiss }) => {
+const ErrorAlertDialog = ({ message, onDismiss }) => {
   return (
     <div>
       <Dialog open>
-        <DialogTitle>{title}</DialogTitle>
+        <DialogTitle>Error</DialogTitle>
         <DialogContent>
           <DialogContentText>{message}</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleDismiss}>Got it</Button>
+          <Button onClick={onDismiss}>Got it</Button>
         </DialogActions>
       </Dialog>
     </div>
   );
 };
 
-export default GeneralAlertDialog;
+export default ErrorAlertDialog;

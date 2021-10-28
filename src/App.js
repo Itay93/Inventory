@@ -12,7 +12,7 @@ import DashboardPage from "./pages/DashboardPage";
 import ProductsPage from "./pages/ProductsPage";
 import SuppliersPage from "./pages/SuppliersPage";
 import InventoryPage from "./pages/InventoryPage";
-import GeneralAlertDialog from "./dialogs/GeneralAlertDialog";
+import ErrorAlertDialog from "./dialogs/ErrorAlertDialog";
 
 const App = () => {
   const [constants, setConstants] = useState({});
@@ -61,10 +61,9 @@ const App = () => {
         <Navbar />
         <div className="content">
           {isError && (
-            <GeneralAlertDialog
-              title="Error"
+            <ErrorAlertDialog
               message={errors}
-              handleDismiss={() => setIsError(false)}
+              onDismiss={() => setIsError(false)}
             />
           )}
           <Switch>

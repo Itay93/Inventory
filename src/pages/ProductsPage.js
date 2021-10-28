@@ -9,6 +9,7 @@ import SubmitProductFormDialog from "../dialogs/SubmitProductFormDialog";
 import LoadingOverlay from "./LoadingOverlay";
 import ProductsTable from "../components/tables/products/ProductsTable";
 import DeleteAlertDialog from "../dialogs/DeleteAlertDialog";
+import ErrorAlertDialog from "../dialogs/ErrorAlertDialog";
 
 const Products = () => {
   const { constants } = useContext(ConstantsContext);
@@ -23,6 +24,8 @@ const Products = () => {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
   const [loading, setLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     searchQuery !== "" ? handleSearch() : setSearchResults([]);
@@ -44,11 +47,8 @@ const Products = () => {
     setLoading(true);
     const response = await productsService.handlePostProduct(values);
     setLoading(false);
-    // error
-    if (response.isError) return alert(response.error);
-    // success
+    if (response.isError) return handleError(response.error);
     setProducts([response, ...products]);
-    alert("Product successfully saved!");
   };
 
   const handleDeleteProduct = async () => {
@@ -56,18 +56,23 @@ const Products = () => {
     setLoading(true);
     const response = await productsService.handleDeleteProduct(currPid);
     setLoading(false);
-    // error
-    if (response.isError) return alert(response.error);
-    // success
+    if (response.isError) return handleError(response.error);
     setProducts((currProducts) => {
       return currProducts.filter((p) => p._id !== currPid);
     });
-    alert("Product successfully deleted!");
+  };
+
+  const handleError = (err) => {
+    setIsError(true);
+    setError(err);
   };
 
   return (
     <div className="content-container">
       {loading && <LoadingOverlay />}
+      {isError && (
+        <ErrorAlertDialog message={error} onDismiss={() => setIsError(false)} />
+      )}
       {/** search, submit */}
       {/** search */}
       <div className="search-button-container">
