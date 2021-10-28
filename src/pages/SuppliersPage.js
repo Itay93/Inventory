@@ -1,6 +1,6 @@
 import "../config/style.css";
-import React, { useState, useContext } from "react";
-import { Button } from "@material-ui/core";
+import React, { useState, useEffect, useContext } from "react";
+import { Button, TextField } from "@material-ui/core";
 
 import ConstantsContext from "../context/ConstantsContext";
 import SuppliersContext from "../context/SuppliersContext";
@@ -17,12 +17,27 @@ const Suppliers = () => {
 
   const [currSid, setCurrSid] = useState("");
 
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
   const [showSubmitDialog, setShowSubmitDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    searchQuery !== "" ? handleSearch() : setSearchResults([]);
+  }, [searchQuery]);
+
+  const handleSearch = () => {
+    setSearchResults(
+      suppliers.filter((s) => {
+        return s.name.search(searchQuery) !== -1;
+      })
+    );
+  };
 
   const handleSubmitSupplier = async (values) => {
     setShowSubmitDialog(false);
@@ -55,23 +70,35 @@ const Suppliers = () => {
       {isError && (
         <ErrorAlertDialog message={error} onDismiss={() => setIsError(false)} />
       )}
-      {/** submit */}
-      <div className="buttons">
-        <Button variant="contained" onClick={() => setShowSubmitDialog(true)}>
-          הוסף ספק
-        </Button>
-        <SubmitSupplierFormDialog
-          show={showSubmitDialog}
-          dismiss={() => setShowSubmitDialog(false)}
-          handleSubmit={(values) => handleSubmitSupplier(values)}
-        />
+      {/** search, submit */}
+      {/** search */}
+      <div className="search-button-container">
+        <div className="search-container">
+          <TextField
+            variant="filled"
+            label="חיפוש"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+        {/** submit */}
+        <div className="submit-button-container">
+          <Button variant="contained" onClick={() => setShowSubmitDialog(true)}>
+            הוסף ספק
+          </Button>
+          <SubmitSupplierFormDialog
+            show={showSubmitDialog}
+            dismiss={() => setShowSubmitDialog(false)}
+            handleSubmit={(values) => handleSubmitSupplier(values)}
+          />
+        </div>
       </div>
       {/** table */}
       {constants.HEB && suppliers && (
         <div className="products-table-container">
           <SuppliersTable
             columns={constants.HEB.SUPPLIERS_TABLE_COLUMNS}
-            data={suppliers}
+            data={searchQuery ? searchResults : suppliers}
             onDelete={(sId) => {
               setCurrSid(sId);
               setShowDeleteDialog(true);
