@@ -10,7 +10,7 @@ import {
 
 import SuppliersTableItem from "./SuppliersTableItem";
 
-const SuppliersTable = ({ columns, data }) => {
+const SuppliersTable = ({ columns, data, onDelete }) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }}>
@@ -27,7 +27,7 @@ const SuppliersTable = ({ columns, data }) => {
         </TableHead>
         <TableBody>
           {data.map((s) => (
-            <SuppliersTableItem s={s} sId={s._id} />
+            <SuppliersTableItem s={s} sId={s._id} onDelete={onDelete} />
           ))}
         </TableBody>
       </Table>

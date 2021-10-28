@@ -8,13 +8,17 @@ import suppliersService from "../services/suppliersService";
 import LoadingOverlay from "./LoadingOverlay";
 import SubmitSupplierFormDialog from "../dialogs/SubmitSupplierFormDialog";
 import SuppliersTable from "../components/tables/suppliers/SuppliersTable";
+import DeleteAlertDialog from "../dialogs/DeleteAlertDialog";
 import ErrorAlertDialog from "../dialogs/ErrorAlertDialog";
 
 const Suppliers = () => {
   const { constants } = useContext(ConstantsContext);
   const { suppliers, setSuppliers } = useContext(SuppliersContext);
 
+  const [currSid, setCurrSid] = useState("");
+
   const [showSubmitDialog, setShowSubmitDialog] = useState(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -29,6 +33,17 @@ const Suppliers = () => {
     setSuppliers([response, ...suppliers]);
   };
 
+  const handleDeleteSupplier = async () => {
+    setShowDeleteDialog(false);
+    setLoading(true);
+    const response = await suppliersService.handleDeleteSupplier(currSid);
+    setLoading(false);
+    if (response.isError) return handleError(response.error);
+    setSuppliers((currSuppliers) => {
+      return currSuppliers.filter((s) => s._id !== currSid);
+    });
+  };
+
   const handleError = (err) => {
     setIsError(true);
     setError(err);
@@ -40,6 +55,7 @@ const Suppliers = () => {
       {isError && (
         <ErrorAlertDialog message={error} onDismiss={() => setIsError(false)} />
       )}
+      {/** submit */}
       <div className="buttons">
         <Button variant="contained" onClick={() => setShowSubmitDialog(true)}>
           הוסף ספק
@@ -56,6 +72,15 @@ const Suppliers = () => {
           <SuppliersTable
             columns={constants.HEB.SUPPLIERS_TABLE_COLUMNS}
             data={suppliers}
+            onDelete={(sId) => {
+              setCurrSid(sId);
+              setShowDeleteDialog(true);
+            }}
+          />
+          <DeleteAlertDialog
+            show={showDeleteDialog}
+            onDelete={handleDeleteSupplier}
+            onDismiss={() => setShowDeleteDialog(false)}
           />
         </div>
       )}

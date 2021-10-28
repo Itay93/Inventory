@@ -13,7 +13,14 @@ const handlePostSupplier = async (values) => {
   return response.data.supplier;
 };
 
+const handleDeleteSupplier = async (sId) => {
+  const response = await suppliersApi.deleteSupplier(sId);
+  if (!response.ok) return response.data;
+  return response.data.supplier;
+};
+
 export default {
   handleGetSuppliers,
   handlePostSupplier,
+  handleDeleteSupplier,
 };

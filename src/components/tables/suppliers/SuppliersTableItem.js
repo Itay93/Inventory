@@ -1,9 +1,9 @@
-import { TableCell, TableRow } from "@material-ui/core";
+import { TableCell, TableRow, Button } from "@material-ui/core";
 
-const SuppliersTableItem = ({ s, sId }) => {
+const SuppliersTableItem = ({ s, sId, onDelete }) => {
   return (
     <TableRow
-      key={sId.toString()}
+      key={sId}
       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
     >
       {/** name */}
@@ -22,6 +22,16 @@ const SuppliersTableItem = ({ s, sId }) => {
       <TableCell align="center">{s.number}</TableCell>
       {/** order by */}
       <TableCell align="center">{s.orderBy}</TableCell>
+      {/** delete */}
+      <TableCell align="center">
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => onDelete(sId)}
+        >
+          מחק
+        </Button>
+      </TableCell>
     </TableRow>
   );
 };
