@@ -75,17 +75,10 @@ const Products = () => {
       {/** table */}
       {constants.HEB && products && (
         <div className="products-table-container">
-          {searchQuery ? (
-            <ProductsTable
-              columns={constants.HEB.PRODUCTS_TABLE_COLUMNS}
-              data={searchResults}
-            />
-          ) : (
-            <ProductsTable
-              columns={constants.HEB.PRODUCTS_TABLE_COLUMNS}
-              data={products}
-            />
-          )}
+          <ProductsTable
+            columns={constants.HEB.PRODUCTS_TABLE_COLUMNS}
+            data={searchQuery ? searchResults : products}
+          />
         </div>
       )}
     </div>
