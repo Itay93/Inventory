@@ -8,15 +8,20 @@ import productsService from "../services/productsService";
 import SubmitProductFormDialog from "../dialogs/SubmitProductFormDialog";
 import LoadingOverlay from "./LoadingOverlay";
 import ProductsTable from "../components/tables/products/ProductsTable";
+import DeleteAlertDialog from "../dialogs/DeleteAlertDialog";
 
 const Products = () => {
   const { constants } = useContext(ConstantsContext);
   const { products, setProducts } = useContext(ProductsContext);
 
+  const [currPid, setCurrPid] = useState("");
+
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
   const [showSubmitDialog, setShowSubmitDialog] = useState(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -44,6 +49,20 @@ const Products = () => {
     // success
     setProducts([response, ...products]);
     alert("Product successfully saved!");
+  };
+
+  const handleDeleteProduct = async () => {
+    setShowDeleteDialog(false);
+    setLoading(true);
+    const response = await productsService.handleDeleteProduct(currPid);
+    setLoading(false);
+    // error
+    if (response.isError) return alert(response.error);
+    // success
+    setProducts((currProducts) => {
+      return currProducts.filter((p) => p._id !== currPid);
+    });
+    alert("Product successfully deleted!");
   };
 
   return (
@@ -78,6 +97,15 @@ const Products = () => {
           <ProductsTable
             columns={constants.HEB.PRODUCTS_TABLE_COLUMNS}
             data={searchQuery ? searchResults : products}
+            onDelete={(pId) => {
+              setCurrPid(pId);
+              setShowDeleteDialog(true);
+            }}
+          />
+          <DeleteAlertDialog
+            show={showDeleteDialog}
+            onDelete={handleDeleteProduct}
+            onDismiss={() => setShowDeleteDialog(false)}
           />
         </div>
       )}

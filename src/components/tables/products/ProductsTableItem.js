@@ -1,6 +1,7 @@
-import { TableCell, TableRow } from "@material-ui/core";
+import { TableCell, TableRow, IconButton } from "@material-ui/core";
+import { Delete } from "@mui/icons-material";
 
-const ProductsTableItem = ({ p, pId }) => {
+const ProductsTableItem = ({ p, pId, onDelete }) => {
   return (
     <TableRow
       key={pId}
@@ -42,6 +43,12 @@ const ProductsTableItem = ({ p, pId }) => {
       <TableCell align="center">{p.sizes.boxDough}</TableCell>
       {/** ambat */}
       <TableCell align="center">{p.sizes.ambat}</TableCell>
+      {/** delete */}
+      <TableCell align="center">
+        <IconButton color="secondary" onClick={() => onDelete(pId)}>
+          <Delete />
+        </IconButton>
+      </TableCell>
     </TableRow>
   );
 };

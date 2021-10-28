@@ -10,7 +10,7 @@ import {
 
 import ProductsTableItem from "./ProductsTableItem";
 
-const ProductsTable = ({ columns, data }) => {
+const ProductsTable = ({ columns, data, onDelete }) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }}>
@@ -27,7 +27,7 @@ const ProductsTable = ({ columns, data }) => {
         </TableHead>
         <TableBody>
           {data.map((p) => (
-            <ProductsTableItem p={p} pId={p._id} />
+            <ProductsTableItem p={p} pId={p._id} onDelete={onDelete} />
           ))}
         </TableBody>
       </Table>
