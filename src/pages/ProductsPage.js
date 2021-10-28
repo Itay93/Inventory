@@ -85,20 +85,18 @@ const Products = () => {
           />
         </div>
         {/** submit */}
-        <div className="submit-button-container">
-          <Button variant="contained" onClick={() => setShowSubmitDialog(true)}>
-            הוסף מוצר
-          </Button>
-          <SubmitProductFormDialog
-            show={showSubmitDialog}
-            dismiss={() => setShowSubmitDialog(false)}
-            handleSubmit={(values) => handleSubmitProduct(values)}
-          />
-        </div>
+        <Button variant="contained" onClick={() => setShowSubmitDialog(true)}>
+          הוסף מוצר
+        </Button>
+        <SubmitProductFormDialog
+          show={showSubmitDialog}
+          dismiss={() => setShowSubmitDialog(false)}
+          handleSubmit={(values) => handleSubmitProduct(values)}
+        />
       </div>
       {/** table */}
       {constants.HEB && products && (
-        <div className="products-table-container">
+        <div className="table-container">
           <ProductsTable
             columns={constants.HEB.PRODUCTS_TABLE_COLUMNS}
             data={searchQuery ? searchResults : products}

@@ -82,20 +82,18 @@ const Suppliers = () => {
           />
         </div>
         {/** submit */}
-        <div className="submit-button-container">
-          <Button variant="contained" onClick={() => setShowSubmitDialog(true)}>
-            הוסף ספק
-          </Button>
-          <SubmitSupplierFormDialog
-            show={showSubmitDialog}
-            dismiss={() => setShowSubmitDialog(false)}
-            handleSubmit={(values) => handleSubmitSupplier(values)}
-          />
-        </div>
+        <Button variant="contained" onClick={() => setShowSubmitDialog(true)}>
+          הוסף ספק
+        </Button>
+        <SubmitSupplierFormDialog
+          show={showSubmitDialog}
+          dismiss={() => setShowSubmitDialog(false)}
+          handleSubmit={(values) => handleSubmitSupplier(values)}
+        />
       </div>
       {/** table */}
       {constants.HEB && suppliers && (
-        <div className="products-table-container">
+        <div className="table-container">
           <SuppliersTable
             columns={constants.HEB.SUPPLIERS_TABLE_COLUMNS}
             data={searchQuery ? searchResults : suppliers}

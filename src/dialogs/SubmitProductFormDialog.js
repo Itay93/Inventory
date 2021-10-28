@@ -31,7 +31,7 @@ const SubmitProductFormDialog = ({ show, dismiss, handleSubmit }) => {
             <form>
               {/** product */}
               <h3>Product</h3>
-              <div className="inputs-container">
+              <div className="inputs-container-center-align">
                 {/** name */}
                 <FormTextField label="Name" name="pName" />
                 {/** include in monthly inventory */}

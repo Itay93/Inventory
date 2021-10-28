@@ -20,7 +20,7 @@ const Inventory = () => {
   };
 
   return (
-    <div className="inventory-container">
+    <div className="content-container">
       <Tabs value={tabIndex} onChange={(e, value) => setTabIndex(value)}>
         {constants.HEB &&
           constants.HEB.INVENTORY.TABLES_OPTIONS.map((o) => {

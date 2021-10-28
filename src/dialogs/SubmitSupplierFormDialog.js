@@ -40,7 +40,7 @@ const SubmitSupplierFormDialog = ({ show, dismiss, handleSubmit }) => {
                 </div>
               </div>
               {/** order days */}
-              <h3 className="input-title">Order</h3>
+              <h3>Order</h3>
               <h5>Select one or more.</h5>
               <div className="checkbox-selection-container">
                 <div role="group" aria-labelledby="checkbox-group">

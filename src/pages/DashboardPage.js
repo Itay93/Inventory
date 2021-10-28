@@ -1,7 +1,7 @@
 import "../config/style.css";
 
 const Dashboard = () => {
-  return <div className="content"></div>;
+  return <div />;
 };
 
 export default Dashboard;
