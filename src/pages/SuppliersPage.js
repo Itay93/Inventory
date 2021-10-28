@@ -1,49 +1,56 @@
 import "../config/style.css";
 import React, { useState, useContext } from "react";
-import { Dialog, DialogContent, Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 import ConstantsContext from "../context/ConstantsContext";
 import SuppliersContext from "../context/SuppliersContext";
 import suppliersService from "../services/suppliersService";
 import LoadingOverlay from "./LoadingOverlay";
-import SubmitSupplier from "../dialogs/SubmitSupplierDialog";
+import SubmitSupplierFormDialog from "../dialogs/SubmitSupplierFormDialog";
 import SuppliersTable from "../components/tables/suppliers/SuppliersTable";
+import ErrorAlertDialog from "../dialogs/ErrorAlertDialog";
 
 const Suppliers = () => {
   const { constants } = useContext(ConstantsContext);
   const { suppliers, setSuppliers } = useContext(SuppliersContext);
 
-  const [loading, setLoading] = useState(false);
   const [showSubmitDialog, setShowSubmitDialog] = useState(false);
+
+  const [loading, setLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmitSupplier = async (values) => {
     setShowSubmitDialog(false);
     setLoading(true);
     const response = await suppliersService.handlePostSupplier(values);
     setLoading(false);
-    // error
-    if (response.isError) return alert(response.error);
-    // success
+    if (response.isError) return handleError(response.error);
     setSuppliers([response, ...suppliers]);
-    alert("Supplier successfully saved!");
+  };
+
+  const handleError = (err) => {
+    setIsError(true);
+    setError(err);
   };
 
   return (
-    <div className="content">
+    <div className="content-container">
       {loading && <LoadingOverlay />}
+      {isError && (
+        <ErrorAlertDialog message={error} onDismiss={() => setIsError(false)} />
+      )}
       <div className="buttons">
         <Button variant="contained" onClick={() => setShowSubmitDialog(true)}>
-          Submit Supplier
+          הוסף ספק
         </Button>
-        <Dialog open={showSubmitDialog}>
-          <DialogContent>
-            <SubmitSupplier
-              dismiss={() => setShowSubmitDialog(false)}
-              handleSubmit={(values) => handleSubmitSupplier(values)}
-            />
-          </DialogContent>
-        </Dialog>
+        <SubmitSupplierFormDialog
+          show={showSubmitDialog}
+          dismiss={() => setShowSubmitDialog(false)}
+          handleSubmit={(values) => handleSubmitSupplier(values)}
+        />
       </div>
+      {/** table */}
       {constants.HEB && suppliers && (
         <div className="products-table-container">
           <SuppliersTable
