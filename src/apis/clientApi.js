@@ -1,7 +1,7 @@
 import { create } from "apisauce";
 
 const clientApi = create({
-  baseURL: "https://floating-falls-98454.herokuapp.com",
+  baseURL: "https://inventory-backend-app.herokuapp.com",
 });
 
 export default clientApi;
