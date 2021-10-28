@@ -21,7 +21,14 @@ const handleDeleteProduct = async (pId) => {
   return response.data.product;
 };
 
-const handleInputsChange = (column, input, p) => {
+const handleExpectedSalesChange = (expectedSales, products) => {
+  products.forEach((p) => {
+    handleCalculateOutOfStock(p.calculations, expectedSales);
+    handleCalculateNeedToOrder(p.calculations, p.product.valueInSales);
+  });
+};
+
+const handleInputsChange = (column, input, p, expectedSales) => {
   if (column === "insertOrder") return (p.insertOrder = input);
   p.inStock[column] = input;
   handleCalculateTotalInStock(p.sizes, p.inStock);
@@ -30,7 +37,7 @@ const handleInputsChange = (column, input, p) => {
     p.inStock.totalInStock,
     p.product.valueInSales
   );
-  handleCalculateOutOfStock(p.calculations, 20000);
+  handleCalculateOutOfStock(p.calculations, expectedSales);
   handleCalculateNeedToOrder(p.calculations, p.product.valueInSales);
 };
 
@@ -74,5 +81,6 @@ export default {
   handleGetProducts,
   handlePostProduct,
   handleDeleteProduct,
+  handleExpectedSalesChange,
   handleInputsChange,
 };
