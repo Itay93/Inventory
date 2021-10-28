@@ -3,7 +3,7 @@ import { TableCell, TableRow } from "@material-ui/core";
 const ProductsTableItem = ({ p, pId }) => {
   return (
     <TableRow
-      key={pId.toString()}
+      key={pId}
       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
     >
       {/** product name */}
