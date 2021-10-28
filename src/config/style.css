@@ -15,6 +15,30 @@
   text-decoration: none;
 }
 
+/* products */
+.content-container {
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.search-container {
+  margin-left: 10px;
+}
+
+.submit-button-container {
+}
+
+.products-table-container {
+  margin-top: 10px;
+}
+
 .content {
   padding: 10px;
   display: flex;
@@ -22,11 +46,6 @@
 }
 
 .buttons {
-  margin-top: 10px;
-}
-
-.products-table-container {
-  direction: rtl;
   margin-top: 10px;
 }
 

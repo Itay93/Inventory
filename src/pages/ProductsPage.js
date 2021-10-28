@@ -1,6 +1,6 @@
 import "../config/style.css";
-import React, { useState, useContext } from "react";
-import { Button } from "@material-ui/core";
+import React, { useState, useEffect, useContext } from "react";
+import { TextField, Button } from "@material-ui/core";
 
 import ConstantsContext from "../context/ConstantsContext";
 import ProductsContext from "../context/ProductsContext";
@@ -13,8 +13,26 @@ const Products = () => {
   const { constants } = useContext(ConstantsContext);
   const { products, setProducts } = useContext(ProductsContext);
 
-  const [loading, setLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
   const [showSubmitDialog, setShowSubmitDialog] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    searchQuery !== "" ? handleSearch() : setSearchResults([]);
+  }, [searchQuery]);
+
+  const handleSearch = () => {
+    setSearchResults(
+      products.filter((p) => {
+        return (
+          p.product.name.search(searchQuery) !== -1 ||
+          p.supplier.name.search(searchQuery) !== -1
+        );
+      })
+    );
+  };
 
   const handleSubmitProduct = async (values) => {
     setShowSubmitDialog(false);
@@ -29,24 +47,45 @@ const Products = () => {
   };
 
   return (
-    <div className="content">
+    <div className="content-container">
       {loading && <LoadingOverlay />}
-      <div className="buttons">
-        <Button variant="contained" onClick={() => setShowSubmitDialog(true)}>
-          Submit Product
-        </Button>
-        <SubmitProductFormDialog
-          show={showSubmitDialog}
-          dismiss={() => setShowSubmitDialog(false)}
-          handleSubmit={(values) => handleSubmitProduct(values)}
-        />
+      {/** search, submit */}
+      {/** search */}
+      <div className="search-button-container">
+        <div className="search-container">
+          <TextField
+            variant="filled"
+            label="חיפוש"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+        {/** submit */}
+        <div className="submit-button-container">
+          <Button variant="contained" onClick={() => setShowSubmitDialog(true)}>
+            הוסף מוצר
+          </Button>
+          <SubmitProductFormDialog
+            show={showSubmitDialog}
+            dismiss={() => setShowSubmitDialog(false)}
+            handleSubmit={(values) => handleSubmitProduct(values)}
+          />
+        </div>
       </div>
+      {/** table */}
       {constants.HEB && products && (
         <div className="products-table-container">
-          <ProductsTable
-            columns={constants.HEB.PRODUCTS_TABLE_COLUMNS}
-            data={products}
-          />
+          {searchQuery ? (
+            <ProductsTable
+              columns={constants.HEB.PRODUCTS_TABLE_COLUMNS}
+              data={searchResults}
+            />
+          ) : (
+            <ProductsTable
+              columns={constants.HEB.PRODUCTS_TABLE_COLUMNS}
+              data={products}
+            />
+          )}
         </div>
       )}
     </div>
