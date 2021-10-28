@@ -1,4 +1,4 @@
-import { TableCell, TableRow, IconButton } from "@material-ui/core";
+import { TableCell, TableRow, Button } from "@material-ui/core";
 
 const ProductsTableItem = ({ p, pId, onDelete }) => {
   return (
@@ -44,7 +44,13 @@ const ProductsTableItem = ({ p, pId, onDelete }) => {
       <TableCell align="center">{p.sizes.ambat}</TableCell>
       {/** delete */}
       <TableCell align="center">
-        <label onClick={() => onDelete(pId)}>מחק</label>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => onDelete(pId)}
+        >
+          מחק
+        </Button>
       </TableCell>
     </TableRow>
   );
