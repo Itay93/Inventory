@@ -79,6 +79,7 @@ const Suppliers = () => {
             label="חיפוש"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            InputLabelProps={{ shrink: true }}
           />
         </div>
         {/** submit */}
