@@ -10,7 +10,7 @@ import {
 
 import ProductsTableItem from "./ProductsTableItem";
 
-const ProductsTable = ({ columns, data, onDelete }) => {
+const ProductsTable = ({ columns, data, onEdit, onPatch, onDelete }) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }}>
@@ -31,6 +31,8 @@ const ProductsTable = ({ columns, data, onDelete }) => {
               p={p}
               pId={p._id}
               index={index + 1}
+              onEdit={onEdit}
+              onPatch={onPatch}
               onDelete={onDelete}
             />
           ))}

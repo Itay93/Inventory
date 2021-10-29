@@ -51,6 +51,18 @@ const Products = () => {
     setProducts([response, ...products]);
   };
 
+  const handleEditProduct = (e, p) => {
+    productsService.handleEditProduct(e.id, e.value, p);
+    setProducts([...products]);
+  };
+
+  const handlePatchProduct = async (p) => {
+    setLoading(true);
+    const response = await productsService.handlePatchProduct(p);
+    setLoading(false);
+    if (response.isError) return handleError(response.error);
+  };
+
   const handleDeleteProduct = async () => {
     setShowDeleteDialog(false);
     setLoading(true);
@@ -101,6 +113,8 @@ const Products = () => {
           <ProductsTable
             columns={constants.HEB.PRODUCTS_TABLE_COLUMNS}
             data={searchQuery ? searchResults : products}
+            onEdit={(e, p) => handleEditProduct(e, p)}
+            onPatch={(p) => handlePatchProduct(p)}
             onDelete={(pId) => {
               setCurrPid(pId);
               setShowDeleteDialog(true);

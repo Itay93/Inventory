@@ -1,6 +1,8 @@
 import { TableCell, TableRow, Button } from "@material-ui/core";
 
-const ProductsTableItem = ({ p, pId, index, onDelete }) => {
+import TableTextField from "../TableTextField";
+
+const ProductsTableItem = ({ p, pId, index, onEdit, onPatch, onDelete }) => {
   return (
     <TableRow
       key={pId}
@@ -13,9 +15,21 @@ const ProductsTableItem = ({ p, pId, index, onDelete }) => {
       {/** product name */}
       <TableCell align="center">{p.product.name}</TableCell>
       {/** product price */}
-      <TableCell align="center">{p.product.price}</TableCell>
+      <TableCell align="center">
+        <TableTextField
+          id={"price"}
+          value={p.product.price}
+          onChange={(e) => onEdit(e.target, p)}
+        />
+      </TableCell>
       {/** product value in sales */}
-      <TableCell align="center">{p.product.valueInSales}</TableCell>
+      <TableCell align="center">
+        <TableTextField
+          id={"valueInSales"}
+          value={p.product.valueInSales}
+          onChange={(e) => onEdit(e.target, p)}
+        />
+      </TableCell>
       {/** include in monthly inventory */}
       <TableCell align="center">
         {p.product.includeInMonthlyInventory ? "V" : "X"}
@@ -31,19 +45,67 @@ const ProductsTableItem = ({ p, pId, index, onDelete }) => {
       {/** in order */}
       <TableCell align="center">{p.sizes.inOrder}</TableCell>
       {/** kg */}
-      <TableCell align="center">{p.sizes.kg}</TableCell>
+      <TableCell align="center">
+        <TableTextField
+          id={"kg"}
+          value={p.sizes.kg}
+          onChange={(e) => onEdit(e.target, p)}
+        />
+      </TableCell>
       {/** box */}
-      <TableCell align="center">{p.sizes.box}</TableCell>
+      <TableCell align="center">
+        <TableTextField
+          id={"box"}
+          value={p.sizes.box}
+          onChange={(e) => onEdit(e.target, p)}
+        />
+      </TableCell>
       {/** unit */}
-      <TableCell align="center">{p.sizes.unit}</TableCell>
+      <TableCell align="center">
+        <TableTextField
+          id={"unit"}
+          value={p.sizes.unit}
+          onChange={(e) => onEdit(e.target, p)}
+        />
+      </TableCell>
       {/** third */}
-      <TableCell align="center">{p.sizes.third}</TableCell>
+      <TableCell align="center">
+        <TableTextField
+          id={"third"}
+          value={p.sizes.third}
+          onChange={(e) => onEdit(e.target, p)}
+        />
+      </TableCell>
       {/** double third */}
-      <TableCell align="center">{p.sizes.dThird}</TableCell>
+      <TableCell align="center">
+        <TableTextField
+          id={"dThird"}
+          value={p.sizes.dThird}
+          onChange={(e) => onEdit(e.target, p)}
+        />
+      </TableCell>
       {/** box dough */}
-      <TableCell align="center">{p.sizes.boxDough}</TableCell>
+      <TableCell align="center">
+        <TableTextField
+          id={"boxDough"}
+          value={p.sizes.boxDough}
+          onChange={(e) => onEdit(e.target, p)}
+        />
+      </TableCell>
       {/** ambat */}
-      <TableCell align="center">{p.sizes.ambat}</TableCell>
+      <TableCell align="center">
+        <TableTextField
+          id={"ambat"}
+          value={p.sizes.ambat}
+          onChange={(e) => onEdit(e.target, p)}
+        />
+      </TableCell>
+      {/** submit edit */}
+      <TableCell align="center">
+        <Button variant="contained" color="primary" onClick={() => onPatch(p)}>
+          שמור
+        </Button>
+      </TableCell>
       {/** delete */}
       <TableCell align="center">
         <Button

@@ -6,8 +6,12 @@ const getProducts = () => {
   return clientApi.get(END_POINT);
 };
 
-const postProduct = (product) => {
-  return clientApi.post(END_POINT, product);
+const postProduct = (p) => {
+  return clientApi.post(END_POINT, p);
+};
+
+const patchProduct = (pId, v) => {
+  return clientApi.patch(`${END_POINT}/${pId}`, v);
 };
 
 const deleteProduct = (pId) => {
@@ -17,5 +21,6 @@ const deleteProduct = (pId) => {
 export default {
   getProducts,
   postProduct,
+  patchProduct,
   deleteProduct,
 };

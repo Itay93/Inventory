@@ -1,6 +1,8 @@
 import productsApi from "../apis/productsApi";
 import Product from "../classes/Product";
 
+const _ = require("lodash");
+
 const handleGetProducts = async () => {
   const response = await productsApi.getProducts();
   if (!response.ok) return response.data;
@@ -15,10 +17,26 @@ const handlePostProduct = async (values) => {
   return response.data.product;
 };
 
+const handlePatchProduct = async (p) => {
+  const response = await productsApi.patchProduct(p._id, {
+    product: p.product,
+    sizes: p.sizes,
+  });
+  console.log(response);
+  if (!response.ok) return response.data;
+  return response.data.product;
+};
+
 const handleDeleteProduct = async (pId) => {
   const response = await productsApi.deleteProduct(pId);
   if (!response.ok) return response.data;
   return response.data.product;
+};
+
+const handleEditProduct = (column, input, p) => {
+  column === "price" || column === "valueInSales"
+    ? (p.product[column] = input)
+    : (p.sizes[column] = input);
 };
 
 const handleExpectedSalesChange = (expectedSales, products) => {
@@ -80,6 +98,8 @@ const handleCalculateNeedToOrder = (calculations, valueInSales) => {
 export default {
   handleGetProducts,
   handlePostProduct,
+  handleEditProduct,
+  handlePatchProduct,
   handleDeleteProduct,
   handleExpectedSalesChange,
   handleInputsChange,
