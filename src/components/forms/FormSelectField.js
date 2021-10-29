@@ -17,6 +17,7 @@ const FormSelectField = ({ label, name, options }) => {
       error={touched[name] && Boolean(errors[name])}
       helperText={touched[name] && errors[name]}
       variant="filled"
+      InputLabelProps={{ shrink: true }}
     >
       {options.map((o) => (
         <MenuItem key={o} value={o}>

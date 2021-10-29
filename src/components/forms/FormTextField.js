@@ -16,6 +16,7 @@ const FormTextField = ({ label, name, ...otherProps }) => {
       error={touched[name] && Boolean(errors[name])}
       helperText={touched[name] && errors[name]}
       variant="filled"
+      InputLabelProps={{ shrink: true }}
       {...otherProps}
     />
   );

@@ -45,19 +45,13 @@ const SubmitProductFormDialog = ({ show, dismiss, handleSubmit }) => {
               {/** more product */}
               <div className="inputs-container">
                 {/** price */}
-                <FormTextField
-                  label="Price"
-                  name="price"
-                  type="number"
-                  InputLabelProps={{ shrink: true }}
-                />
+                <FormTextField label="Price" name="price" type="number" />
                 {/** value in sales */}
                 <div className="right-input">
                   <FormTextField
                     label="Value in sales"
                     name="valueInSales"
                     type="number"
-                    InputLabelProps={{ shrink: true }}
                   />
                 </div>
               </div>
@@ -101,45 +95,24 @@ const SubmitProductFormDialog = ({ show, dismiss, handleSubmit }) => {
               <h4 className="input-title">Values</h4>
               <div className="inputs-container">
                 {/** kg */}
-                <FormTextField
-                  label="Kg"
-                  name="kg"
-                  type="number"
-                  InputLabelProps={{ shrink: true }}
-                />
+                <FormTextField label="Kg" name="kg" type="number" />
                 {/** box */}
                 <div className="middle-input">
-                  <FormTextField
-                    label="Box"
-                    name="box"
-                    type="number"
-                    InputLabelProps={{ shrink: true }}
-                  />
+                  <FormTextField label="Box" name="box" type="number" />
                 </div>
                 {/** unit */}
-                <FormTextField
-                  label="Unit"
-                  name="unit"
-                  type="number"
-                  InputLabelProps={{ shrink: true }}
-                />
+                <FormTextField label="Unit" name="unit" type="number" />
               </div>
               {/** more values */}
               <div className="inputs-container">
                 {/** third */}
-                <FormTextField
-                  label="Third"
-                  name="third"
-                  type="number"
-                  InputLabelProps={{ shrink: true }}
-                />
+                <FormTextField label="Third" name="third" type="number" />
                 {/** dThird */}
                 <div className="right-input">
                   <FormTextField
                     label="Double third"
                     name="dThird"
                     type="number"
-                    InputLabelProps={{ shrink: true }}
                   />
                 </div>
               </div>
@@ -150,16 +123,10 @@ const SubmitProductFormDialog = ({ show, dismiss, handleSubmit }) => {
                   label="Box dough"
                   name="boxDough"
                   type="number"
-                  InputLabelProps={{ shrink: true }}
                 />
                 {/** ambat */}
                 <div className="right-input">
-                  <FormTextField
-                    label="Ambat"
-                    name="ambat"
-                    type="number"
-                    InputLabelProps={{ shrink: true }}
-                  />
+                  <FormTextField label="Ambat" name="ambat" type="number" />
                 </div>
               </div>
               {/** buttons */}

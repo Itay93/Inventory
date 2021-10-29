@@ -1,7 +1,7 @@
 import { useFormikContext } from "formik";
 import { TextField, MenuItem } from "@material-ui/core";
 
-const FormSupplierSelectField = ({ label, name, suppliers }) => {
+const FormSupplierSelectField = ({ label, name, suppliers, ...otherProps }) => {
   const { values, errors, touched, handleBlur, handleChange } =
     useFormikContext();
   return (
@@ -17,6 +17,8 @@ const FormSupplierSelectField = ({ label, name, suppliers }) => {
       error={touched[name] && Boolean(errors[name])}
       helperText={touched[name] && errors[name]}
       variant="filled"
+      InputLabelProps={{ shrink: true }}
+      {...otherProps}
     >
       {suppliers.map((s) => (
         <MenuItem
