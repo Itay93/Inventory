@@ -5,9 +5,9 @@ import { Button, TextField } from "@material-ui/core";
 import ConstantsContext from "../context/ConstantsContext";
 import SuppliersContext from "../context/SuppliersContext";
 import suppliersService from "../services/suppliersService";
-import LoadingOverlay from "./LoadingOverlay";
 import SubmitSupplierFormDialog from "../dialogs/SubmitSupplierFormDialog";
 import SuppliersTable from "../components/tables/suppliers/SuppliersTable";
+import LoadingAlertDialog from "../dialogs/LoadingAlertDialog";
 import DeleteAlertDialog from "../dialogs/DeleteAlertDialog";
 import ErrorAlertDialog from "../dialogs/ErrorAlertDialog";
 
@@ -66,7 +66,7 @@ const Suppliers = () => {
 
   return (
     <div className="content-container">
-      {loading && <LoadingOverlay />}
+      {loading && <LoadingAlertDialog />}
       {isError && (
         <ErrorAlertDialog message={error} onDismiss={() => setIsError(false)} />
       )}

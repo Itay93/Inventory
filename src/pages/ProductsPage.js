@@ -6,8 +6,8 @@ import ConstantsContext from "../context/ConstantsContext";
 import ProductsContext from "../context/ProductsContext";
 import productsService from "../services/productsService";
 import SubmitProductFormDialog from "../dialogs/SubmitProductFormDialog";
-import LoadingOverlay from "./LoadingOverlay";
 import ProductsTable from "../components/tables/products/ProductsTable";
+import LoadingAlertDialog from "../dialogs/LoadingAlertDialog";
 import DeleteAlertDialog from "../dialogs/DeleteAlertDialog";
 import ErrorAlertDialog from "../dialogs/ErrorAlertDialog";
 
@@ -81,7 +81,7 @@ const Products = () => {
 
   return (
     <div className="content-container">
-      {loading && <LoadingOverlay />}
+      {loading && <LoadingAlertDialog />}
       {isError && (
         <ErrorAlertDialog message={error} onDismiss={() => setIsError(false)} />
       )}
