@@ -1,6 +1,6 @@
 export default {
-  DASHBOARD: "Dashboard",
-  PRODUCTS: "Products",
-  SUPPLIERS: "Suppliers",
-  INVENTORY: "Inventory",
+  DASHBOARD: "דאשבורד",
+  PRODUCTS: "מוצרים",
+  SUPPLIERS: "ספקים",
+  INVENTORY: "ניהול מלאי",
 };

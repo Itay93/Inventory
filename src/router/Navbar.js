@@ -6,7 +6,7 @@ import routes from "./routes";
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <h1>Company</h1>
+      <h1>פיצרייה</h1>
       <div className="links">
         <Link to="/">{routes.DASHBOARD}</Link>
         <Link to="/products">{routes.PRODUCTS}</Link>
