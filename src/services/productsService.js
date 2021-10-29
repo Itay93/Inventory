@@ -1,8 +1,6 @@
 import productsApi from "../apis/productsApi";
 import Product from "../classes/Product";
 
-const _ = require("lodash");
-
 const handleGetProducts = async () => {
   const response = await productsApi.getProducts();
   if (!response.ok) return response.data;
