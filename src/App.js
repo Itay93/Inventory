@@ -12,6 +12,7 @@ import DashboardPage from "./pages/DashboardPage";
 import ProductsPage from "./pages/ProductsPage";
 import SuppliersPage from "./pages/SuppliersPage";
 import InventoryPage from "./pages/InventoryPage";
+import LoadingAlertDialog from "./dialogs/LoadingAlertDialog";
 import ErrorAlertDialog from "./dialogs/ErrorAlertDialog";
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
   const [products, setProducts] = useState([]);
   const [suppliers, setSuppliers] = useState([]);
 
+  const [loading, setLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [errors, setErrors] = useState("");
 
@@ -27,9 +29,10 @@ const App = () => {
   }, []);
 
   const loadData = async () => {
-    loadConstants();
-    loadProducts();
-    loadSuppliers();
+    await loadConstants();
+    await loadProducts();
+    await loadSuppliers();
+    setLoading(false);
   };
 
   const loadConstants = async () => {
@@ -60,6 +63,7 @@ const App = () => {
       <div className="app">
         <Navbar />
         <div className="content">
+          {loading && <LoadingAlertDialog />}
           {isError && (
             <ErrorAlertDialog
               message={errors}
