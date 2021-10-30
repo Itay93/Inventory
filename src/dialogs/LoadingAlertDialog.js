@@ -12,7 +12,9 @@ const LoadingAlertDialog = () => {
       <Dialog open>
         <DialogContent>
           <div className="loading-alert-container">
-            <CircularProgress />
+            <div className="circular-progress-container">
+              <CircularProgress />
+            </div>
             <DialogContentText>Loading...</DialogContentText>
           </div>
         </DialogContent>

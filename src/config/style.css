@@ -99,3 +99,7 @@
   justify-content: center;
   align-items: center;
 }
+
+.circular-progress-container {
+  margin-bottom: 10px;
+}
